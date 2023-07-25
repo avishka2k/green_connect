@@ -1,5 +1,5 @@
-import 'package:calendar_test/components/calendar_remind_card.dart';
-import 'package:calendar_test/components/top_bar.dart';
+import '../components/calendar_remind_card.dart';
+import '../components/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';

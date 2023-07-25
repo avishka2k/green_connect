@@ -1,7 +1,7 @@
-import 'package:calendar_test/min_page/page_calendar.dart';
-import 'package:calendar_test/min_page/page_home.dart';
-import 'package:calendar_test/min_page/test_cal.dart';
-import 'package:calendar_test/min_page/test_cal2.dart';
+import 'min_page/page_calendar.dart';
+import 'min_page/page_home.dart';
+import 'min_page/test_cal.dart';
+import 'min_page/test_cal2.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 

@@ -1,4 +1,4 @@
-import 'package:calendar_test/min_page/test_cal.dart';
+import '../min_page/test_cal.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
