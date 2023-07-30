@@ -1,5 +1,6 @@
+import '../components/app_bar_with_menu.dart';
 import '../components/calendar_remind_card.dart';
-import '../components/top_bar.dart';
+//import '../components/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
@@ -128,311 +129,321 @@ class _PageCalenderState extends State<PageCalender> {
   Widget build(BuildContext context) {
     String monthName = DateFormat.MMMM().format(selectedDate);
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: Column(
-        children: [
-          TopBar(title: "Calendar"),
-          Column(
-            children: [
-              const SizedBox(height: 30),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  color: HexColor("#D4E8DD"),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () => changeMonth(-1),
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: const Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '$monthName, ${selectedDate.year}',
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w500),
-                    ),
-                    GestureDetector(
-                      onTap: () => changeMonth(1),
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: const Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Day select row
-              SingleChildScrollView(
-                //scrollDirection: Axis.horizontal,
-                controller: scrollController,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () => changeDay(selectedDay - 1),
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          border: Border.all(
-                            color: HexColor("#D9D9D9"),
+    return Scaffold(
+      appBar: AppBarWithMenu(
+        title: "Calendar",
+        notifications: 4,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+        child: Column(
+          children: [
+            //TopBar(title: "Calendar"),
+            Column(
+              children: [
+                const SizedBox(height: 30),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    color: HexColor("#D4E8DD"),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () => changeMonth(-1),
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            size: 20,
                           ),
                         ),
-                        child: const Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          size: 20,
-                        ),
                       ),
-                    ),
-                    ...buildDayContainers(),
-                    GestureDetector(
-                      onTap: () => changeDay(selectedDay + 1),
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          border: Border.all(
-                            color: HexColor("#D9D9D9"),
+                      Text(
+                        '$monthName, ${selectedDate.year}',
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w500),
+                      ),
+                      GestureDetector(
+                        onTap: () => changeMonth(1),
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
                           ),
                         ),
-                        child: const Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 20,
-                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              // Class and events tab row
-              const SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () => selectTab(0),
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 5),
-                      decoration: selectedTabIndex == 0
-                          ? BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                            )
-                          : const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 2,
-                                ),
-                              ),
+                const SizedBox(height: 20),
+                // Day select row
+                SingleChildScrollView(
+                  //scrollDirection: Axis.horizontal,
+                  controller: scrollController,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () => changeDay(selectedDay - 1),
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            border: Border.all(
+                              color: HexColor("#D9D9D9"),
                             ),
-                      //color: selectedTabIndex == 0 ? Colors.grey[300] : null,
-
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.menu_book_rounded,
-                              color: selectedTabIndex == 0
-                                  ? Theme.of(context).primaryColor
-                                  : null,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              'Class',
-                              style: TextStyle(
-                                color:
-                                    selectedTabIndex == 0 ? Colors.black : null,
-                              ),
-                            ),
-                          ],
+                          ),
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            size: 20,
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => selectTab(1),
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 5),
-                      decoration: selectedTabIndex == 1
-                          ? BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                            )
-                          : const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 2,
-                                ),
-                              ),
+                      ...buildDayContainers(),
+                      GestureDetector(
+                        onTap: () => changeDay(selectedDay + 1),
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            border: Border.all(
+                              color: HexColor("#D9D9D9"),
                             ),
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.event,
-                              color: selectedTabIndex == 1
-                                  ? Theme.of(context).primaryColor
-                                  : null,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              'Events',
-                              style: TextStyle(
-                                color:
-                                    selectedTabIndex == 1 ? Colors.black : null,
-                              ),
-                            ),
-                          ],
+                          ),
+                          child: const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 20,
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  GestureDetector(
-                    onTap: () => selectTab(2),
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 5),
-                      decoration: selectedTabIndex == 2
-                          ? BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 2,
-                                ),
-                              ),
-                            )
-                          : const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.alarm,
-                              color: selectedTabIndex == 2
-                                  ? Theme.of(context).primaryColor
-                                  : null,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              'Remind',
-                              style: TextStyle(
-                                color:
-                                    selectedTabIndex == 1 ? Colors.black : null,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15),
-              // Display content based on selected tab and day
-              if (selectedTabIndex == 0) ...[
-                // Display Class content
-                _isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Text('Class Content for Day $selectedDay'),
-              ] else if (selectedTabIndex == 1) ...[
-                // Display Events content
-                _isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Text('Events Content for Day $selectedDay'),
-              ] else if (selectedTabIndex == 2) ...[
-                // Display Events content
-                _isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  padding: const EdgeInsets.only(
-                                    top: 3,
-                                    bottom: 3,
-                                    left: 2,
-                                    right: 6,
-                                  ),
-                                  decoration: BoxDecoration(
+                ),
+                // Class and events tab row
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () => selectTab(0),
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        decoration: selectedTabIndex == 0
+                            ? BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
                                     color: Theme.of(context).primaryColor,
-                                    borderRadius: BorderRadius.circular(5),
+                                    width: 2,
                                   ),
-                                  child: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.add,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(width: 2),
-                                      Text(
-                                        "Add Remind",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ],
+                                ),
+                              )
+                            : const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 2,
                                   ),
+                                ),
+                              ),
+                        //color: selectedTabIndex == 0 ? Colors.grey[300] : null,
+
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.menu_book_rounded,
+                                color: selectedTabIndex == 0
+                                    ? Theme.of(context).primaryColor
+                                    : null,
+                              ),
+                              const SizedBox(width: 5),
+                              Text(
+                                'Class',
+                                style: TextStyle(
+                                  color: selectedTabIndex == 0
+                                      ? Colors.black
+                                      : null,
                                 ),
                               ),
                             ],
                           ),
-                          const calendar_remind_card(),
-                        ],
+                        ),
                       ),
+                    ),
+                    GestureDetector(
+                      onTap: () => selectTab(1),
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        decoration: selectedTabIndex == 1
+                            ? BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2,
+                                  ),
+                                ),
+                              )
+                            : const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.event,
+                                color: selectedTabIndex == 1
+                                    ? Theme.of(context).primaryColor
+                                    : null,
+                              ),
+                              const SizedBox(width: 5),
+                              Text(
+                                'Events',
+                                style: TextStyle(
+                                  color: selectedTabIndex == 1
+                                      ? Colors.black
+                                      : null,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => selectTab(2),
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        decoration: selectedTabIndex == 2
+                            ? BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2,
+                                  ),
+                                ),
+                              )
+                            : const BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.alarm,
+                                color: selectedTabIndex == 2
+                                    ? Theme.of(context).primaryColor
+                                    : null,
+                              ),
+                              const SizedBox(width: 5),
+                              Text(
+                                'Remind',
+                                style: TextStyle(
+                                  color: selectedTabIndex == 1
+                                      ? Colors.black
+                                      : null,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                // Display content based on selected tab and day
+                if (selectedTabIndex == 0) ...[
+                  // Display Class content
+                  _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Text('Class Content for Day $selectedDay'),
+                ] else if (selectedTabIndex == 1) ...[
+                  // Display Events content
+                  _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Text('Events Content for Day $selectedDay'),
+                ] else if (selectedTabIndex == 2) ...[
+                  // Display Events content
+                  _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                      top: 3,
+                                      bottom: 3,
+                                      left: 2,
+                                      right: 6,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(width: 2),
+                                        Text(
+                                          "Add Remind",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const calendar_remind_card(),
+                          ],
+                        ),
+                ],
               ],
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

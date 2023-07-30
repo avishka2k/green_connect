@@ -1,3 +1,7 @@
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:green_connect/profile/profile_main.dart';
+
+import 'app_color.dart';
 import 'min_page/page_calendar.dart';
 import 'min_page/page_home.dart';
 import 'min_page/test_cal.dart';
@@ -13,119 +17,75 @@ class MainLayer extends StatefulWidget {
 }
 
 class _MainLayerState extends State<MainLayer> {
-  int currentTab = 0;
-  final List screens = [
-    const PageHome(),
-    const PageCalender(),
-    const CalendarScreen(),
-    // const scanner(),
-    // qr_generate(),
-    // const history(),
-    // const setting()
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Home',
+      style: optionStyle,
+    ),
+    PageCalender(),
+    Text(
+      'Search',
+      style: optionStyle,
+    ),
+    ProfileMain()
   ];
-  Widget currentScreen = const PageHome();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: currentScreen,
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: SizedBox(
-          width: 70,
-          height: 70,
-          child: FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                  100), // Set the border radius to create a rounded rectangle
-            ),
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.qr_code_scanner_sharp,
-              size: 40,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              setState(() {
-                //currentScreen = const scanner();
-                currentTab = 0;
-              });
-            },
-          ),
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.black.withOpacity(.1),
+            )
+          ],
         ),
-        bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          elevation: 10,
-          child: SizedBox(
-            height: 70,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      currentScreen = const PageHome();
-                      currentTab = 1;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.home_rounded,
-                    size: 25,
-                    color: currentTab == 1
-                        ? Theme.of(context).primaryColor
-                        : HexColor("#3C3C3C"),
-                  ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: GNav(
+              rippleColor: Colors.grey[300]!,
+              hoverColor: Colors.grey[100]!,
+              gap: 8,
+              activeColor: Theme.of(context).primaryColor,
+              iconSize: 24,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 400),
+              tabBackgroundColor: Colors.grey[100]!,
+              color: appBlackhelf,
+              tabs: const [
+                GButton(
+                  icon: Icons.home,
+                  text: 'Home',
                 ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      currentScreen = const PageCalender();
-                      currentTab = 2;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.home_rounded,
-                    size: 25,
-                    color: currentTab == 2
-                        ? Theme.of(context).primaryColor
-                        : HexColor("#3C3C3C"),
-                  ),
+                GButton(
+                  icon: Icons.calendar_month_outlined,
+                  text: 'Calendar',
                 ),
-                const SizedBox(width: 50),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      currentScreen = CalendarScreen();
-                      currentTab = 3;
-                    }
-                  );
-                },
-                  icon: Icon(
-                    Icons.home_rounded,
-                    size: 25,
-                    color: currentTab == 3
-                        ? Theme.of(context).primaryColor
-                        : HexColor("#3C3C3C"),
-                  ),
+                GButton(
+                  icon: Icons.search,
+                  text: 'Search',
                 ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      currentScreen = test_cal2();
-                      currentTab = 4;
-                    }
-                  );
-                },
-                  icon: Icon(
-                    Icons.home_rounded,
-                    size: 25,
-                    color: currentTab == 4
-                        ? Theme.of(context).primaryColor
-                        : HexColor("#3C3C3C"),
-                  ),
-                )
+                GButton(
+                  icon: Icons.person,
+                  text: 'Profile',
+                ),
               ],
+              selectedIndex: _selectedIndex,
+              onTabChange: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
             ),
           ),
         ),
