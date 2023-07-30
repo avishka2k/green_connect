@@ -98,8 +98,9 @@ class _MainLayeState extends State<MainLaye> {
                     setState(() {
                       currentScreen = CalendarScreen();
                       currentTab = 3;
-                    });
-                  },
+                    }
+                  );
+                },
                   icon: Icon(
                     Icons.home_rounded,
                     size: 25,
@@ -113,8 +114,9 @@ class _MainLayeState extends State<MainLaye> {
                     setState(() {
                       currentScreen = test_cal2();
                       currentTab = 4;
-                    });
-                  },
+                    }
+                  );
+                },
                   icon: Icon(
                     Icons.home_rounded,
                     size: 25,
