@@ -5,19 +5,19 @@ import 'min_page/test_cal2.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class MainLaye extends StatefulWidget {
-  const MainLaye({super.key});
+class MainLayer extends StatefulWidget {
+  const MainLayer({super.key});
 
   @override
-  State<MainLaye> createState() => _MainLayeState();
+  State<MainLayer> createState() => _MainLayerState();
 }
 
-class _MainLayeState extends State<MainLaye> {
+class _MainLayerState extends State<MainLayer> {
   int currentTab = 0;
   final List screens = [
     const PageHome(),
     const PageCalender(),
-    CalendarScreen(),
+    const CalendarScreen(),
     // const scanner(),
     // qr_generate(),
     // const history(),

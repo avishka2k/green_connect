@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'profile_student_tab.dart';
-// import 'profile_academic_tab.dart';
-// import 'profile_attendance_tab.dart';
+// +import 'profile_student_tab.dart';
+import 'profile_academic_tab.dart';
+//import 'profile_attendance_tab.dart';
 
 class ProfileMain extends StatelessWidget {
   const ProfileMain({super.key});
@@ -88,8 +88,10 @@ class ProfileMain extends StatelessWidget {
                         child: TabBarView(
                           children: [
                             // profile_student_tab(),
-                            // profile_academic_tab(),
-                            // profile_attendance_tab(),
+                            profile_academic_tab(),
+                            profile_academic_tab(),
+                            profile_academic_tab(),
+                            //profile_attendance_tab(),
                           ],
                         ),
                       ),
