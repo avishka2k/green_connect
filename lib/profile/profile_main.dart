@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'profile_student_tab.dart';
-// import 'profile_academic_tab.dart';
-// import 'profile_attendance_tab.dart';
+import '../components/app_bar_with_menu.dart';
+import 'profile_student_tab.dart';
+import 'profile_academic_tab.dart';
+//import 'profile_attendance_tab.dart';
 
 class ProfileMain extends StatelessWidget {
   const ProfileMain({super.key});
@@ -9,8 +10,9 @@ class ProfileMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Flutter Example App"),
+        appBar: AppBarWithMenu(
+          title: "Profile",
+          notifications: 4,
         ),
         body: Center(
           child: Column(
@@ -37,46 +39,63 @@ class ProfileMain extends StatelessWidget {
                   ],
                 ),
               ),
-              const Expanded(
+              Expanded(
                 child: DefaultTabController(
                   length: 3,
                   initialIndex: 0,
                   child: Column(
                     children: [
                       Align(
-                        alignment: Alignment(0, 0),
+                        alignment: const Alignment(0, 0),
                         child: TabBar(
                           isScrollable: true,
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          labelPadding:
+                              const EdgeInsets.symmetric(horizontal: 23),
                           indicatorWeight: 1,
-                          tabs: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.school,
-                                  size: 16,
-                                ),
-                                Text("Student", style: TextStyle(fontSize: 12)),
-                              ],
+                          indicatorColor: Theme.of(context).primaryColor,
+                          tabs: const [
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 8),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.school,
+                                    size: 16,
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text("Student",
+                                      style: TextStyle(fontSize: 12)),
+                                ],
+                              ),
                             ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.local_library,
-                                  size: 16,
-                                ),
-                                Text("Academic",
-                                    style: TextStyle(fontSize: 12)),
-                              ],
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 8),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.local_library,
+                                    size: 16,
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text("Academic",
+                                      style: TextStyle(fontSize: 12)),
+                                ],
+                              ),
                             ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.fact_check,
-                                  size: 16,
-                                ),
-                                Text("Attendance",
-                                    style: TextStyle(fontSize: 12)),
-                              ],
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 8),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.fact_check,
+                                    size: 16,
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text("Attendance",
+                                      style: TextStyle(fontSize: 12)),
+                                ],
+                              ),
                             ),
                             // Tab(
                             //   text: 'Example 3',
@@ -84,12 +103,13 @@ class ProfileMain extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         child: TabBarView(
                           children: [
-                            // profile_student_tab(),
-                            // profile_academic_tab(),
-                            // profile_attendance_tab(),
+                            ProfileStudentTab(),
+                            profile_academic_tab(),
+                            profile_academic_tab(),
+                            //profile_attendance_tab(),
                           ],
                         ),
                       ),

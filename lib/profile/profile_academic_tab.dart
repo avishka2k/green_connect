@@ -7,13 +7,13 @@ class profile_academic_tab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.zero,
-      scrollDirection: Axis.vertical,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Table(
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        scrollDirection: Axis.vertical,
+        children: [
+          Table(
             columnWidths: const {
               0: FixedColumnWidth(100.0),
             },
@@ -24,14 +24,14 @@ class profile_academic_tab extends StatelessWidget {
                   child: Text(
                     "Current GPA",
                     style:
-                        TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 2),
                   child: Text(
                     "3.34",
-                    style: TextStyle(fontSize: 12.0),
+                    style: TextStyle(fontSize: 14.0),
                   ),
                 ),
               ]),
@@ -41,62 +41,63 @@ class profile_academic_tab extends StatelessWidget {
                   child: Text(
                     "Class",
                     style:
-                        TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 2),
                   child: Text(
                     "2nd Upper",
-                    style: TextStyle(fontSize: 12.0),
+                    style: TextStyle(fontSize: 14.0),
                   ),
                 ),
               ]),
             ],
           ),
-        ),
-        const ProfileAcademicTabTableRow(
-            semester: 'Year 3 Semester 1',
-            rowData: [
-              {
-                'module_code': 'CS301.3',
-                'module_title': 'IT Project Management',
-                'module_result': 'A',
-              },
-              {
-                'module_code': 'CS301.3',
-                'module_title': 'IT Project Management',
-                'module_result': 'B',
-              },
-              {
-                'module_code': 'CS301.3',
-                'module_title': 'IT Project Management',
-                'module_result': 'B',
-              },
-            ]),
-        const SizedBox(
-          height: 10,
-        ),
-        const ProfileAcademicTabTableRow(
-            semester: 'Year 3 Semester 1',
-            rowData: [
-              {
-                'module_code': 'CS301.3',
-                'module_title': 'IT Project Management',
-                'module_result': 'A',
-              },
-              {
-                'module_code': 'CS301.3',
-                'module_title': 'IT Project Management',
-                'module_result': 'B',
-              },
-              {
-                'module_code': 'CS301.3',
-                'module_title': 'IT Project Management',
-                'module_result': 'B',
-              },
-            ])
-      ],
+          const SizedBox(height: 15),
+          const ProfileAcademicTabTableRow(
+              semester: 'Year 3 Semester 1',
+              rowData: [
+                {
+                  'module_code': 'CS301.3',
+                  'module_title': 'IT Project Management',
+                  'module_result': 'A',
+                },
+                {
+                  'module_code': 'CS301.3',
+                  'module_title': 'IT Project Management',
+                  'module_result': 'B',
+                },
+                {
+                  'module_code': 'CS301.3',
+                  'module_title': 'IT Project Management',
+                  'module_result': 'B',
+                },
+              ]),
+          const SizedBox(
+            height: 10,
+          ),
+          const ProfileAcademicTabTableRow(
+              semester: 'Year 3 Semester 1',
+              rowData: [
+                {
+                  'module_code': 'CS301.3',
+                  'module_title': 'IT Project Management',
+                  'module_result': 'A',
+                },
+                {
+                  'module_code': 'CS301.3',
+                  'module_title': 'IT Project Management',
+                  'module_result': 'B',
+                },
+                {
+                  'module_code': 'CS301.3',
+                  'module_title': 'IT Project Management',
+                  'module_result': 'B',
+                },
+              ])
+        ],
+      ),
     );
   }
 }
