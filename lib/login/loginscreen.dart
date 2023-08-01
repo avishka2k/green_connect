@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:loginpage/comlogingscreen.dart';
-import 'package:loginpage/home.dart';
+import 'comlogingscreen.dart';
+
 
 class Loginscreen extends StatefulWidget {
   @override
@@ -145,10 +145,10 @@ class _LoginScreenState extends State<Loginscreen> {
       child: ElevatedButton(
         onPressed: () {
           // Navigate to the home screen when the "Login" button is pressed
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => home()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => home()),
+          // );
         },
         child: Text(
           'Login',
