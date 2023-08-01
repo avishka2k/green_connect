@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'comlogingscreen.dart';
+import 'login_community_signup.dart';
 
 
 class Loginscreen extends StatefulWidget {

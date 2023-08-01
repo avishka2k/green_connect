@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_connect/profile/profile_main.dart';
 import '';
 
-import 'login/loginscreen.dart';
+import 'login/login_main_screen.dart';
 import 'main_layer.dart';
 
 void main() {
