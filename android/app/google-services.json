@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "772366311772",
+    "firebase_url": "https://greenconnect-a973b-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "greenconnect-a973b",
+    "storage_bucket": "greenconnect-a973b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772366311772:android:c05c631e11c0559f316199",
+        "android_client_info": {
+          "package_name": "com.example.green_connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772366311772-18122fo0c397bbs5nl8r0sr44s2clh7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3sdeCt7otISmtU9F_yfaUmVpNPGkNDSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772366311772-18122fo0c397bbs5nl8r0sr44s2clh7s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "772366311772-6bijis5o70qa54riim1u01gh3o1qgokm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.greenConnect"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
