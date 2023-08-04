@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:green_connect/calendar/calendar_main.dart';
+import 'package:green_connect/profile/profile_main.dart';
 import 'firebase_options.dart';
-import 'login/login_main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF18A689)),
           useMaterial3: true,
           primaryColor: const Color(0xFF18A689)),
-      home: const CalendarMain(),
+      home: const ProfileMain(),
     );
   }
 }

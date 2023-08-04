@@ -29,7 +29,7 @@ class AddUser extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: addUser,
-          child: Text(
+          child: const Text(
             "Add User",
           ),
         ),
