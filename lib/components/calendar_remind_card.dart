@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-// ignore: camel_case_types
-class calendar_remind_card extends StatelessWidget {
-  const calendar_remind_card({super.key});
+class CalendarRemindCard extends StatelessWidget {
+  const CalendarRemindCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 400,
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.symmetric(vertical: 3),
       decoration: BoxDecoration(
