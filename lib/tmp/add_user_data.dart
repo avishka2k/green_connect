@@ -1,8 +1,13 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:green_connect/components/flutter_toast.dart';
 
 class AddDataToFirebase extends StatefulWidget {
+  const AddDataToFirebase({super.key});
+
   @override
   _AddDataToFirebaseState createState() => _AddDataToFirebaseState();
 }
@@ -20,7 +25,7 @@ class _AddDataToFirebaseState extends State<AddDataToFirebase> {
       return userCredential.user;
     } on FirebaseAuthException catch (e) {
       // Handle any authentication exceptions (e.g., email already in use)
-      print('Failed to create user: ${e.message}');
+      AppToastmsg.appToastMeassage('Failed to create user: ${e.message}');
       return null;
     }
   }
@@ -37,7 +42,7 @@ class _AddDataToFirebaseState extends State<AddDataToFirebase> {
       });
     } catch (e) {
       // Handle any Firestore upload exceptions
-      print('Failed to upload username: $e');
+      AppToastmsg.appToastMeassage('Failed to upload username: $e');
     }
   }
 
@@ -50,7 +55,7 @@ class _AddDataToFirebaseState extends State<AddDataToFirebase> {
     if (user != null) {
       // User created successfully, now upload the username to Firestore
       await _uploadUsernameToFirestore(user, username, email);
-      print('User registered successfully!');
+      AppToastmsg.appToastMeassage('User registered successfully!');
     }
   }
 
