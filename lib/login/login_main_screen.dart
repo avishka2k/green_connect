@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/login/login_community_signup.dart';
 
 class Loginscreen extends StatefulWidget {
@@ -11,7 +13,26 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<Loginscreen> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   bool isRememberMe = false;
+
+  Future login() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _email.text,
+        password: _password.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        AppToastmsg.appToastMeassage('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        AppToastmsg.appToastMeassage('Wrong password provided for that user.');
+      }
+    }
+  }
+
   Widget buildUsername() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,17 +51,24 @@ class _LoginScreenState extends State<Loginscreen> {
                 )
               ]),
           height: 60,
-          child: const TextField(
+          child: TextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Can\'t be empty';
+              }
+              return null;
+            },
+            controller: _email,
             keyboardType: TextInputType.name,
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black),
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14),
               prefixIcon: Icon(
                 Icons.account_circle_outlined,
                 color: Color(0xFF18A689),
               ),
-              hintText: 'Username',
+              hintText: 'Email',
               hintStyle: TextStyle(
                 color: Color(0xFF5F5B5B),
               ),
@@ -72,10 +100,17 @@ class _LoginScreenState extends State<Loginscreen> {
             ],
           ),
           height: 60,
-          child: const TextField(
+          child: TextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'can\'t be empty';
+              }
+              return null;
+            },
+            controller: _password,
             obscureText: true,
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.black),
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14),
               prefixIcon: Icon(
@@ -125,11 +160,9 @@ class _LoginScreenState extends State<Loginscreen> {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          // Navigate to the home screen when the "Login" button is pressed
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => home()),
-          // );
+          if (_formKey.currentState!.validate()) {
+            login();
+          }
         },
         style: ButtonStyle(
           padding: MaterialStateProperty.all<EdgeInsets>(
@@ -196,29 +229,32 @@ class _LoginScreenState extends State<Loginscreen> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 120),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Welcome',
-                        style: TextStyle(
-                          color: Color(0xFF4F4F4F),
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Welcome',
+                          style: TextStyle(
+                            color: Color(0xFF4F4F4F),
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 100,
-                      ),
-                      buildUsername(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      buildPassword(),
-                      buildRememberCb(),
-                      buildLoginBtn(),
-                      buildsignUpcomm()
-                    ],
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        buildUsername(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        buildPassword(),
+                        buildRememberCb(),
+                        buildLoginBtn(),
+                        buildsignUpcomm()
+                      ],
+                    ),
                   ),
                 ),
               )
