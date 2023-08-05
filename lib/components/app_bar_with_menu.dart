@@ -12,15 +12,8 @@ class AppBarWithMenu extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
       centerTitle: true,
-      leading: IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.menu_rounded,
-          size: 30,
-          color: Theme.of(context).primaryColor,
-        ),
-      ),
       title: Text(
         title,
         style: TextStyle(
@@ -31,10 +24,9 @@ class AppBarWithMenu extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Stack(
           children: [
-            Icon(
+            const Icon(
               Icons.notifications,
               size: 30,
-              color: Theme.of(context).primaryColor,
             ),
             Positioned(
               right: 0,
