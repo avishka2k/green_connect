@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../app_color.dart';
+
 // ignore: camel_case_types
 class ProfileStudentTab extends StatefulWidget {
   const ProfileStudentTab({super.key});
@@ -21,7 +23,7 @@ class _ProfileStudentTabState extends State<ProfileStudentTab> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: appPagePadding,
       child: Table(
         columnWidths: const {
           0: FixedColumnWidth(100.0), // Set the width of the first column

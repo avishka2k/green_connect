@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../app_color.dart';
 import 'profile_academic_tab_tablerow.dart';
 
 // ignore: camel_case_types
@@ -8,7 +9,7 @@ class profile_academic_tab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: appPagePadding,
       child: ListView(
         padding: EdgeInsets.zero,
         scrollDirection: Axis.vertical,
