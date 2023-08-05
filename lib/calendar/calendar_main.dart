@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:green_connect/app_color.dart';
 import 'package:green_connect/calendar/calendar_class_tab.dart';
 import 'package:green_connect/calendar/calendar_events_tab.dart';
 import 'package:green_connect/calendar/calendar_remind_tab.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
-import '../components/app_bar_with_menu.dart';
 
 class CalendarMain extends StatefulWidget {
   const CalendarMain({super.key});
@@ -83,9 +83,9 @@ class _CalendarMainState extends State<CalendarMain> {
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-                color:
-                    selectedDay == day ? Theme.of(context).primaryColor : null,
-                borderRadius: BorderRadius.circular(5)),
+              color: selectedDay == day ? Theme.of(context).primaryColor : null,
+              borderRadius: BorderRadius.circular(5),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -126,15 +126,11 @@ class _CalendarMainState extends State<CalendarMain> {
   Widget build(BuildContext context) {
     String monthName = DateFormat.MMMM().format(selectedDate);
 
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: const AppBarWithMenu(
-          title: "Calendar",
-          notifications: 4,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
+    return Scaffold(
+      body: DefaultTabController(
+        length: 3,
+        child: Padding(
+          padding: appPagePadding,
           child: Column(
             children: [
               Container(
@@ -235,6 +231,7 @@ class _CalendarMainState extends State<CalendarMain> {
               const SizedBox(height: 20),
               // TabBar
               const TabBar(
+                indicatorWeight: 1,
                 tabs: [
                   Tab(
                     child: Row(

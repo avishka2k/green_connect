@@ -8,22 +8,25 @@ class CalendarEventsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
-      child: Column(
-        children: [
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-          CalendarRemindCard(),
-        ],
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+            CalendarRemindCard(),
+          ],
+        ),
       ),
     );
   }
