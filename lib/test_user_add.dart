@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -6,7 +8,7 @@ class AddUser extends StatelessWidget {
   final String company;
   final int age;
 
-  AddUser(this.fullName, this.company, this.age);
+  const AddUser(this.fullName, this.company, this.age, {super.key});
 
   @override
   Widget build(BuildContext context) {
