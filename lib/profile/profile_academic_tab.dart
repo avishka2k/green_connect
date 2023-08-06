@@ -143,7 +143,7 @@ class ProfileAcademicTab extends StatelessWidget {
           //   ],
           // ),
 
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(vertical: 5),
             child: Text(
               "Year 3 Semester 1",
@@ -153,7 +153,7 @@ class ProfileAcademicTab extends StatelessWidget {
               ),
             ),
           ),
-          ProfileAcademicData(yearsem: "year1sem1")
+          const ProfileAcademicData(yearsem: "year1sem1")
         ],
       ),
     );

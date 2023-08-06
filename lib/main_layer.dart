@@ -1,12 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:green_connect/components/app_bar_with_menu.dart';
-import 'package:green_connect/components/app_menu_item.dart';
-import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/profile/profile_main.dart';
-import 'package:green_connect/side_menu/payments/payments_main.dart';
-import 'package:green_connect/side_menu/settings/settings_main.dart';
 import 'package:green_connect/side_menu/side_menu.dart';
 import 'app_color.dart';
 import 'calendar/calendar_main.dart';
