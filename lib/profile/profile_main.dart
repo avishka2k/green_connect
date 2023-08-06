@@ -1,6 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:green_connect/profile/profile_attendance_tab.dart';
 import 'package:green_connect/profile/test_ac.dart';
 import 'profile_student_tab.dart';
 import 'profile_academic_tab.dart';
@@ -76,7 +74,7 @@ class ProfileMain extends StatelessWidget {
                 ),
               ],
             ),
-            Expanded(
+            const Expanded(
               child: TabBarView(
                 children: [
                   ProfileStudentTab(),

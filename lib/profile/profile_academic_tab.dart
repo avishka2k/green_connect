@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/profile/profile_academic_data.dart';
-import 'package:green_connect/profile/test_ac.dart';
 import '../app_color.dart';
-import 'profile_academic_tab_tablerow.dart';
 
 // ignore: camel_case_types
 class profile_academic_tab extends StatelessWidget {
@@ -24,7 +23,7 @@ class profile_academic_tab extends StatelessWidget {
       return academicSnapshot;
     } catch (e) {
       // Handle any Firestore retrieval exceptions
-      print('Failed to fetch user events: $e');
+      AppToastmsg.appToastMeassage('Error adding module data: $e');
       rethrow;
     }
   }
@@ -78,7 +77,7 @@ class profile_academic_tab extends StatelessWidget {
               ]),
             ],
           ),
-          ProfileAcademicData(
+          const ProfileAcademicData(
             academicID: "year1sem1",
           )
         ],

@@ -1,6 +1,9 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:green_connect/components/flutter_toast.dart';
 
 class Academic {
   final String academicID;
@@ -20,6 +23,8 @@ class Module {
 }
 
 class FirestoreExample extends StatefulWidget {
+  const FirestoreExample({super.key});
+
   @override
   _FirestoreExampleState createState() => _FirestoreExampleState();
 }
@@ -42,7 +47,6 @@ class _FirestoreExampleState extends State<FirestoreExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Firestore Example")),
       body: modules.isNotEmpty
           ? ListView.builder(
               itemCount: modules.length,
@@ -59,7 +63,7 @@ class _FirestoreExampleState extends State<FirestoreExample> {
                 );
               },
             )
-          : Center(
+          : const Center(
               child: Text("No modules data found."),
             ),
     );
@@ -76,7 +80,6 @@ class _FirestoreExampleState extends State<FirestoreExample> {
 
       // Iterate through each academic document and fetch modules data
       for (var academicDoc in academicSnapshot.docs) {
-        final academicID = academicDoc.id;
         final yearSemesterSnapshot = await academicDoc.reference
             .collection("year_semester")
             .doc(yearSemester.yearSemesterID)
@@ -99,7 +102,7 @@ class _FirestoreExampleState extends State<FirestoreExample> {
       // Update the widget state to reflect the changes
       setState(() {});
     } catch (e) {
-      print("Error fetching modules data: $e");
+      AppToastmsg.appToastMeassage('Error fetching modules data: $e');
     }
   }
 }

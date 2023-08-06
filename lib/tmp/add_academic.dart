@@ -1,7 +1,10 @@
 
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:green_connect/components/flutter_toast.dart';
 
 
 class Academic {
@@ -22,6 +25,8 @@ class Module {
 }
 
 class AddAcademic extends StatefulWidget {
+  const AddAcademic({super.key});
+
   @override
   _AddAcademicState createState() => _AddAcademicState();
 }
@@ -35,13 +40,12 @@ class _AddAcademicState extends State<AddAcademic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Firestore Example")),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             addModuleData();
           },
-          child: Text("Add Module Data"),
+          child: const Text("Add Module Data"),
         ),
       ),
     );
@@ -84,9 +88,9 @@ class _AddAcademicState extends State<AddAcademic> {
           .collection("module")
           .add(module2.toJson());
 
-      print("Module data added successfully.");
+      AppToastmsg.appToastMeassage('Module data added successfully.');
     } catch (e) {
-      print("Error adding module data: $e");
+      AppToastmsg.appToastMeassage('Error adding module data: $e');
     }
   }
 }
