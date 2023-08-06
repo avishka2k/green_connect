@@ -78,8 +78,8 @@ class ProfileMain extends StatelessWidget {
               child: TabBarView(
                 children: [
                   ProfileStudentTab(),
-                  profile_academic_tab(),
-                  FirestoreExample(academicID: "year1sem2")
+                  ProfileAcademicTab(),
+                  FirestoreExample(academicID: "year4sem2")
                   //profile_attendance_tab(),
                 ],
               ),

@@ -1,0 +1,341 @@
+{
+  "__collections__": {
+    "module": {
+      "field1": { "ds": "", "__collections__": {} },
+      "tSCoQ4lsgHGWtWyEl9Gz": {
+        "name": "",
+        "lecturer": "",
+        "code": "32",
+        "semester": 1.1,
+        "field1": "hi",
+        "field2": "hello",
+        "__collections__": {}
+      }
+    },
+    "users": {
+      "nVrtFH7N4JMfR5ri6nZRPem0hmp1": {
+        "email": "email@gmail.com",
+        "username": "username",
+        "uid": "234248",
+        "faculty": "Faculty Of Computing",
+        "degree": "BSc (Hons) in Software Engineering",
+        "intake": "21.1",
+        "__collections__": {
+          "academic": {
+            "academic_id": {
+              "__collections__": {
+                "year1sem1": {
+                  "year1sem1_id": {
+                    "__collections__": {
+                      "module": {
+                        "IEMNQV4Kk4cIVw5D2rr9": {
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "score": "A",
+                          "__collections__": {}
+                        },
+                        "J3hemM59wUNww33y8KYT": {
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "score": "B",
+                          "__collections__": {}
+                        },
+                        "aLtdQJqJeK765tbEjTJ9": {
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "score": "C",
+                          "__collections__": {}
+                        },
+                        "eITbT6mdlu4BiAeKdlDQ": {
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "score": "A+",
+                          "__collections__": {}
+                        },
+                        "uhE0AtZHRsRvAV7jvhHa": {
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "score": "B+",
+                          "__collections__": {}
+                        }
+                      }
+                    }
+                  }
+                },
+                "year1sem2": {
+                  "year1sem2_id": {
+                    "__collections__": {
+                      "module": {
+                        "9YhkEKvDyA4azD1jmHQJ": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "b4w8TqHzzuXzg4rOoMJm": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "dGXahi0MiFfxb5VZTQy1": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "khY7spHxiolsV9vZOGKv": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "lBIceU57XxBGAaJEoodX": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        }
+                      }
+                    }
+                  }
+                },
+                "year2sem1": {
+                  "year2sem1_id": {
+                    "__collections__": {
+                      "module": {
+                        "FMHCE4tDdlEaCDsOQDBW": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "b816PCMm5eUeB40WTvsB": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "gPY0O3tvu2MrF4y4cWiz": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "xN7mA5D72temEmYVnGNq": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "ztqB54fVLOK1CIITvhdN": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        }
+                      }
+                    }
+                  }
+                },
+                "year2sem2": {
+                  "year2sem2_id": {
+                    "__collections__": {
+                      "module": {
+                        "7eaWq1atD7uhTHNZmItO": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "J1GUoVsYTwHotxqMQbjX": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "Yeoan56aMGsYuC6p1VNj": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "jB8S16IiigGcEmnNhds9": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "vqJg5raurbsv1Xohm4wF": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        }
+                      }
+                    }
+                  }
+                },
+                "year3sem1": {
+                  "year3sem1_id": {
+                    "__collections__": {
+                      "module": {
+                        "9MjQdMOTbfKMDJ1AbOaH": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "chQ7HSw8mifaKGBpUGZd": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "d19WSnEH809MftN1cvz2": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "qq9Kkzk4bYLqtAwCC3Fh": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "tlVGZqHKbxnASRF7zD1l": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        }
+                      }
+                    }
+                  }
+                },
+                "year3sem2": {
+                  "year3sem2_id": {
+                    "__collections__": {
+                      "module": {
+                        "OhUWlTVwS7VpZmh2ijPz": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "dbRxBLe9acp0BiCsGgPF": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "tKlKC8YNsDx8eO2KiDLa": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "xG1ZFxgyJbEAsH9bEHCp": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "zKpnAPoacqlg5NJTLea6": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        }
+                      }
+                    }
+                  }
+                },
+                "year4sem1": {
+                  "year4sem1_id": {
+                    "__collections__": {
+                      "module": {
+                        "BgXMZ3lv2ndxkwRMO9bw": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "cJHhAgXHIIzdyJklHYmD": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "lIygREMnysReLGohAUy0": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "ngsiq6FN8O6pz6SrJIKi": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "s8wwtgnMM9rE5udaqBVu": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        }
+                      }
+                    }
+                  }
+                },
+                "year4sem2": {
+                  "year4sem2_id": {
+                    "__collections__": {
+                      "module": {
+                        "AQY5XXgaag4AkN8tvtAl": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "MtfddYEWAWSZR3XM7rdH": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "UKoulDiJUdpHa0JwC7Gu": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        },
+                        "akU3wTZlKfC0pY7SApGX": {
+                          "score": "value2_1",
+                          "code": "value1_1",
+                          "title": "value2_1",
+                          "__collections__": {}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "attendance": {
+            "i4PLWVCV02o59lOeofNm": { "att": "", "__collections__": {} }
+          },
+          "events": {
+            "cjKjSBYxAbND2wVNoYoU": { "events": "", "__collections__": {} }
+          },
+          "remind": {
+            "xSa98TXWEK0gt2gIgdey": { "time": "", "__collections__": {} }
+          }
+        }
+      }
+    }
+  }
+}
