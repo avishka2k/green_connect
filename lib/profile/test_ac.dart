@@ -239,9 +239,7 @@ class FirestoreExample extends StatefulWidget {
 class _FirestoreExampleState extends State<FirestoreExample> {
   final firestoreInstance = FirebaseFirestore.instance;
   final User? user = FirebaseAuth.instance.currentUser;
-  final Academic academic = Academic(academicID: "academic_id");
-  late YearSemester yearSemester =
-      YearSemester(yearSemesterID: widget.academicID);
+  //final Academic academic = Academic(academicID: "academic_id");
 
   List<Module> modules = [];
   List<Academic> academics = [];
@@ -285,19 +283,17 @@ class _FirestoreExampleState extends State<FirestoreExample> {
           .collection("users")
           .doc(user!.uid)
           .collection("academic")
-          .doc(academic.academicID)
-          .collection(yearSemester.yearSemesterID)
-          .doc(
-              "year1sem1_id") // Replace this with the actual document ID if needed
+          .doc("academic_id")
+          .collection(widget.academicID)
+          .doc('${widget.academicID}_id')
           .collection("module")
           .get();
 
-      // Convert the query snapshot to a list of Module objects
       modules = snapshot.docs.map((doc) {
         return Module(
           moduleID: doc.id,
-          field1: doc.get("field1"),
-          field2: doc.get("field2"),
+          field1: doc.get("code"),
+          field2: doc.get("title"),
         );
       }).toList();
 
