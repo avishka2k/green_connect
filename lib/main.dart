@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/firebase/auth/auth_state_changes.dart';
 import 'package:green_connect/tmp/add_user_data.dart';
 
 void main() async {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primaryColor: const Color(0xFF18A689),
       ),
-      home: const AddDataToFirebase(),
+      home: const AuthChanges(),
     );
   }
 }
