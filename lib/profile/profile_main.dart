@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/profile/profile_attendance_tab.dart';
+import 'package:green_connect/profile/test_ac.dart';
 import 'profile_student_tab.dart';
 import 'profile_academic_tab.dart';
 //import 'profile_attendance_tab.dart';
@@ -73,12 +76,12 @@ class ProfileMain extends StatelessWidget {
                 ),
               ],
             ),
-            const Expanded(
+            Expanded(
               child: TabBarView(
                 children: [
                   ProfileStudentTab(),
                   profile_academic_tab(),
-                  profile_academic_tab(),
+                  FirestoreExample(academicID: "year1sem2")
                   //profile_attendance_tab(),
                 ],
               ),

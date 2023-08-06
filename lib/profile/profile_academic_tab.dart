@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/profile/profile_academic_data.dart';
+import 'package:green_connect/profile/test_ac.dart';
 import '../app_color.dart';
 import 'profile_academic_tab_tablerow.dart';
 
@@ -6,13 +10,32 @@ import 'profile_academic_tab_tablerow.dart';
 class profile_academic_tab extends StatelessWidget {
   const profile_academic_tab({super.key});
 
+  Future<DocumentSnapshot<Map<String, dynamic>>> fetchUserEvents(
+      User user) async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> academicSnapshot =
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .collection('academic')
+              .doc('lK3rXcfOCHJoSSxxX5pY')
+              .get();
+
+      return academicSnapshot;
+    } catch (e) {
+      // Handle any Firestore retrieval exceptions
+      print('Failed to fetch user events: $e');
+      rethrow;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+
     return Padding(
       padding: appPagePadding,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        scrollDirection: Axis.vertical,
+      child: Column(
         children: [
           Table(
             columnWidths: const {
@@ -55,48 +78,9 @@ class profile_academic_tab extends StatelessWidget {
               ]),
             ],
           ),
-          const SizedBox(height: 15),
-          const ProfileAcademicTabTableRow(
-              semester: 'Year 3 Semester 1',
-              rowData: [
-                {
-                  'module_code': 'CS301.3',
-                  'module_title': 'IT Project Management',
-                  'module_result': 'A',
-                },
-                {
-                  'module_code': 'CS301.3',
-                  'module_title': 'IT Project Management',
-                  'module_result': 'B',
-                },
-                {
-                  'module_code': 'CS301.3',
-                  'module_title': 'IT Project Management',
-                  'module_result': 'B',
-                },
-              ]),
-          const SizedBox(
-            height: 10,
-          ),
-          const ProfileAcademicTabTableRow(
-              semester: 'Year 3 Semester 1',
-              rowData: [
-                {
-                  'module_code': 'CS301.3',
-                  'module_title': 'IT Project Management',
-                  'module_result': 'A',
-                },
-                {
-                  'module_code': 'CS301.3',
-                  'module_title': 'IT Project Management',
-                  'module_result': 'B',
-                },
-                {
-                  'module_code': 'CS301.3',
-                  'module_title': 'IT Project Management',
-                  'module_result': 'B',
-                },
-              ])
+          ProfileAcademicData(
+            academicID: "year1sem1",
+          )
         ],
       ),
     );

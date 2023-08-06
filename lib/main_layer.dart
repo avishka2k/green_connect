@@ -55,6 +55,7 @@ class _MainLayerState extends State<MainLayer> {
       }
     } catch (e) {
       AppToastmsg.appToastMeassage('Failed to fetch user data: $e');
+
       return null;
     }
   }
