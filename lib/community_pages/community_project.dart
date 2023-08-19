@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginpage/pages/csr.dart';
+import 'package:green_connect/community_pages/community_csr.dart';
 
-class communitypage extends StatefulWidget {
-  const communitypage({Key? key}) : super(key: key);
+class CommunityPage extends StatefulWidget {
+  const CommunityPage({Key? key}) : super(key: key);
 
   @override
-  State<communitypage> createState() => _communitypageState();
+  State<CommunityPage> createState() => _CommunityPageState();
 }
 
 int notificationCount = 5;
 
-class _communitypageState extends State<communitypage> {
+class _CommunityPageState extends State<CommunityPage> {
   String userName = "Chamaka";
   double availableBalance = 5000.00;
 
@@ -50,28 +50,28 @@ class _communitypageState extends State<communitypage> {
             children: [
               InkWell(
                 onTap: () {},
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   radius: 15,
                   backgroundImage: AssetImage(
                       'assets/images/propic.png'), // Replace with the path to your profile picture asset
                 ),
               ),
-              Spacer(),
-              SizedBox(width: 8),
+              const Spacer(),
+              const SizedBox(width: 8),
               Text(
                 'Foss',
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF18A689),
+                  color: const Color(0xFF18A689),
                 ),
               ),
-              Spacer(),
-              SizedBox(width: 8),
+              const Spacer(),
+              const SizedBox(width: 8),
               Stack(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.notifications_rounded),
-                    color: Color(0xFF18A689),
+                    icon: const Icon(Icons.notifications_rounded),
+                    color: const Color(0xFF18A689),
                     onPressed: () {
                       // Handle the right icon's onPressed event here
                     },
@@ -80,18 +80,18 @@ class _communitypageState extends State<communitypage> {
                     right: 10,
                     top: 10,
                     child: Container(
-                      padding: EdgeInsets.all(2),
+                      padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         minWidth: 16,
                         minHeight: 16,
                       ),
                       child: Text(
                         '$notificationCount',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 10,
                         ),
@@ -113,7 +113,7 @@ class _communitypageState extends State<communitypage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
+                      prefixIcon: const Icon(Icons.search),
                       hintText: 'Search...',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -123,7 +123,7 @@ class _communitypageState extends State<communitypage> {
                 ),
                   Center(
 
-                      child:Container(
+                      child:SizedBox(
                         height: 300,
                         width: double.infinity,
                         child: Column(
@@ -167,7 +167,7 @@ class _communitypageState extends State<communitypage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 0),
+                              const SizedBox(height: 0),
                               Expanded(
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
@@ -177,7 +177,7 @@ class _communitypageState extends State<communitypage> {
                                       false; // Track if the React button is clicked
 
                                       return Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 10),
+                                        padding: const EdgeInsets.symmetric(horizontal: 10),
                                         child: Container(
                                           width: 140,
                                           decoration: BoxDecoration(
@@ -201,7 +201,7 @@ class _communitypageState extends State<communitypage> {
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
-                                                  SizedBox(height: 10),
+                                                  const SizedBox(height: 10),
                                                   Text(
                                                     itemTexts1[index],
                                                     style: GoogleFonts.inter(
@@ -210,13 +210,13 @@ class _communitypageState extends State<communitypage> {
                                                       color: Colors.black,
                                                     ),
                                                   ),
-                                                  SizedBox(height: 5),
+                                                  const SizedBox(height: 5),
                                                   Text(
                                                     'Subtitle Text',
                                                     style: GoogleFonts.inter(
                                                       fontSize: 12,
                                                       fontWeight: FontWeight.normal,
-                                                      color: Color(0xFF00744A),
+                                                      color: const Color(0xFF00744A),
                                                     ),
                                                   ),
                                                   Row(
@@ -247,13 +247,13 @@ class _communitypageState extends State<communitypage> {
                                                             onPressed: () {
                                                               Navigator.push(
                                                                 context,
-                                                                MaterialPageRoute(builder: (context) => csr()),
+                                                                MaterialPageRoute(builder: (context) => const CommunityCsr(),),
                                                               );
                                                               // Handle the "More" button click to navigate to another display
                                                               // You can use Navigator.push here
                                                             },
                                                             style: ElevatedButton.styleFrom(
-                                                              primary: Colors.white,
+                                                              backgroundColor: Colors.white,
                                                               // shadowColor: Colors.transparent,
                                                               //  shape: RoundedRectangleBorder(
                                                               //    borderRadius: BorderRadius.only(
@@ -267,7 +267,7 @@ class _communitypageState extends State<communitypage> {
                                                               style: GoogleFonts.inter(
                                                                 fontSize: 12,
                                                                 fontWeight: FontWeight.normal,
-                                                                color: Color(0xFF00744A),
+                                                                color: const Color(0xFF00744A),
                                                               ),
                                                             ),
                                                           ),
@@ -285,11 +285,11 @@ class _communitypageState extends State<communitypage> {
                             ]),
                       )
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Center(
-                      child:     Container(
+                      child:     SizedBox(
                         height: 300,
                         width: double.infinity,
                         child: Column(
@@ -332,7 +332,7 @@ class _communitypageState extends State<communitypage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 0),
+                              const SizedBox(height: 0),
                               Expanded(
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
@@ -342,7 +342,7 @@ class _communitypageState extends State<communitypage> {
                                       false; // Track if the React button is clicked
 
                                       return Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 10),
+                                        padding: const EdgeInsets.symmetric(horizontal: 10),
                                         child: Container(
                                           width: 140,
                                           decoration: BoxDecoration(
@@ -366,7 +366,7 @@ class _communitypageState extends State<communitypage> {
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
-                                                  SizedBox(height: 10),
+                                                  const SizedBox(height: 10),
                                                   Text(
                                                     itemTexts1[index],
                                                     style: GoogleFonts.inter(
@@ -375,13 +375,13 @@ class _communitypageState extends State<communitypage> {
                                                       color: Colors.black,
                                                     ),
                                                   ),
-                                                  SizedBox(height: 5),
+                                                  const SizedBox(height: 5),
                                                   Text(
                                                     'Subtitle Text',
                                                     style: GoogleFonts.inter(
                                                       fontSize: 12,
                                                       fontWeight: FontWeight.normal,
-                                                      color: Color(0xFF00744A),
+                                                      color: const Color(0xFF00744A),
                                                     ),
                                                   ),
                                                   Row(
@@ -414,7 +414,7 @@ class _communitypageState extends State<communitypage> {
                                                               // You can use Navigator.push here
                                                             },
                                                             style: ElevatedButton.styleFrom(
-                                                              primary: Colors.white,
+                                                              backgroundColor: Colors.white,
                                                               // shadowColor: Colors.transparent,
                                                               //  shape: RoundedRectangleBorder(
                                                               //    borderRadius: BorderRadius.only(
@@ -428,7 +428,7 @@ class _communitypageState extends State<communitypage> {
                                                               style: GoogleFonts.inter(
                                                                 fontSize: 12,
                                                                 fontWeight: FontWeight.normal,
-                                                                color: Color(0xFF00744A),
+                                                                color: const Color(0xFF00744A),
                                                               ),
                                                             ),
                                                           ),
