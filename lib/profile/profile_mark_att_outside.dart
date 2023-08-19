@@ -3,6 +3,8 @@ import 'package:green_connect/components/app_bar_with_back.dart';
 
 
 class MarkAttendance extends StatelessWidget {
+  const MarkAttendance({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +26,11 @@ class MarkAttendance extends StatelessWidget {
               onPressed: () {
             
               },
-              child: const Text('Try again'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 36, 105, 38),
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               ),
+              child: const Text('Try again'),
             ),
           ],
         ),
