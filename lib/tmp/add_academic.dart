@@ -40,8 +40,6 @@ class _AddAcademicState extends State<AddAcademic> {
   final firestoreInstance = FirebaseFirestore.instance;
   final User? user = FirebaseAuth.instance.currentUser;
   final Academic academic = Academic(academicID: "academic_id");
-  late YearSemester yearSemester =
-      YearSemester(yearSemesterID: widget.academicID);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +70,7 @@ class _AddAcademicState extends State<AddAcademic> {
           .doc(user!.uid)
           .collection("academic")
           .doc(academic.academicID)
-          .collection(yearSemester.yearSemesterID)
+          .collection(widget.academicID)
           .doc('${widget.academicID}_id')
           .collection("module")
           .add(module1.toJson());

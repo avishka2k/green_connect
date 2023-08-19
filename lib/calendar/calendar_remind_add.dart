@@ -1,9 +1,29 @@
 // ignore_for_file: non_constant_identifier_names
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_connect/app_color.dart';
 import 'package:green_connect/components/app_bar_with_back.dart';
+import 'package:green_connect/components/flutter_toast.dart';
 import 'package:intl/intl.dart';
 import '../components/app_text_form_field.dart';
+
+class Module {
+  final String remindID;
+  final String title;
+  final String note;
+  final String date;
+  final String time;
+  final String remind;
+  Module({
+    required this.remindID,
+    required this.title,
+    required this.note,
+    required this.date,
+    required this.time,
+    required this.remind,
+  });
+}
 
 class CalendarRemindAdd extends StatefulWidget {
   const CalendarRemindAdd({super.key});
@@ -18,7 +38,10 @@ class _CalendarRemindAddState extends State<CalendarRemindAdd> {
   TextEditingController note_controller = TextEditingController();
   TextEditingController date_controller = TextEditingController();
   TextEditingController time_controller = TextEditingController();
-  TextEditingController remind_controller = TextEditingController();
+  String? selectedRemind;
+
+  final firestoreInstance = FirebaseFirestore.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
 
   void _date_picker() {
     DateTime selected_date = DateTime.now();
@@ -115,7 +138,8 @@ class _CalendarRemindAddState extends State<CalendarRemindAdd> {
                         ),
                       ),
                       const SizedBox(height: 3),
-                      DropdownButtonFormField(
+                      DropdownButtonFormField<String>(
+                        value: selectedRemind,
                         items: <String>['Dog', 'Cat', 'Tiger', 'Lion']
                             .map<DropdownMenuItem<String>>(
                           (String value) {
@@ -128,7 +152,9 @@ class _CalendarRemindAddState extends State<CalendarRemindAdd> {
                           },
                         ).toList(),
                         onChanged: (val) {
-                          setState(() {});
+                          setState(() {
+                            selectedRemind = val;
+                          });
                         },
                         decoration: const InputDecoration(
                           labelText: 'Remind',
@@ -151,7 +177,6 @@ class _CalendarRemindAddState extends State<CalendarRemindAdd> {
                             note_controller.text = '';
                             date_controller.text = '';
                             time_controller.text = '';
-                            remind_controller.text = '';
                             Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
@@ -174,7 +199,9 @@ class _CalendarRemindAddState extends State<CalendarRemindAdd> {
                             ),
                           ),
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {}
+                            if (_formKey.currentState!.validate()) {
+                              addModuleData();
+                            }
                           },
                           child: const Text(
                             "Add Task",
@@ -191,5 +218,43 @@ class _CalendarRemindAddState extends State<CalendarRemindAdd> {
         ),
       ),
     );
+  }
+
+  void addModuleData() async {
+    try {
+      final module1 = Module(
+        remindID: "remind_id",
+        title: title_controller.text,
+        note: note_controller.text,
+        date: date_controller.text,
+        time: time_controller.text,
+        remind: selectedRemind ?? '',
+      );
+
+      // Add the modules to Firestore
+      await firestoreInstance
+          .collection("users")
+          .doc(user!.uid)
+          .collection("remind")
+          .add(module1.toJson());
+
+      AppToastmsg.appToastMeassage('New remind added successfully.');
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
+    } catch (e) {
+      AppToastmsg.appToastMeassage('Error adding module data: $e');
+    }
+  }
+}
+
+extension ModuleExtension on Module {
+  Map<String, dynamic> toJson() {
+    return {
+      "title": title,
+      "note": note,
+      "date": date,
+      "time": time,
+      "remind": remind,
+    };
   }
 }

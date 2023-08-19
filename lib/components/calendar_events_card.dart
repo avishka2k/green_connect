@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class CalendarRemindCard extends StatelessWidget {
+class CalendarEventCard extends StatelessWidget {
   final String? title;
   final String? note;
   final String? date;
   final String? time;
   final String? remind;
-  const CalendarRemindCard({
+  const CalendarEventCard({
     super.key,
     this.title,
     this.note,
