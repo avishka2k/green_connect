@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_connect/community_pages/community_add.dart';
 import 'package:green_connect/community_pages/community_csr.dart';
+import 'package:green_connect/community_pages/community_edit.dart';
 
 class CommunityHomePage extends StatefulWidget {
   const CommunityHomePage({Key? key}) : super(key: key);
@@ -141,131 +143,7 @@ class _CommunityHomePageState extends State<CommunityHomePage> {
                         scrollDirection: Axis.horizontal,
                         itemCount: imagePaths.length,
                         itemBuilder: (BuildContext context, int index) {
-                          bool isReactClicked = false;
-
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Container(
-                              width: 140,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Stack(
-                                alignment: Alignment.bottomRight,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: Image.asset(
-                                          imagePaths[index],
-                                          height: 100,
-                                          width: 140,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        itemTexts1[index],
-                                        style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Text(
-                                        'Subtitle Text',
-                                        style: GoogleFonts.inter(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.normal,
-                                          color: const Color(0xFF00744A),
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Positioned(
-                                            left: 0,
-                                            right: 0,
-                                            bottom: 0,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          csr()),
-                                                );
-                                                // Handle the "More" button click to navigate to another display
-                                                // You can use Navigator.push here
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: Colors.white,
-                                              ),
-                                              child: Text(
-                                                'Edit',
-                                                style: GoogleFonts.inter(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
-                                                  color:
-                                                      const Color(0xFF00744A),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            left: 0,
-                                            right: 0,
-                                            bottom: 0,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          csr()),
-                                                );
-                                                // Handle the "More" button click to navigate to another display
-                                                // You can use Navigator.push here
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: Colors.white,
-                                              ),
-                                              child: Text(
-                                                'Delete',
-                                                style: GoogleFonts.inter(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
-                                                  color:
-                                                      const Color(0xFF00744A),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      )),
-                      const SizedBox(height: 0),
-                      Expanded(
-                          child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: imagePaths.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          bool isReactClicked =
-                              false; // Track if the React button is clicked
+                          // bool isReactClicked = false;
 
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -324,7 +202,133 @@ class _CommunityHomePageState extends State<CommunityHomePage> {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
-                                                        Edit(),
+                                                        const CommunityCsr(),
+                                                  ),
+                                                );
+                                                // Handle the "More" button click to navigate to another display
+                                                // You can use Navigator.push here
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.white,
+                                              ),
+                                              child: Text(
+                                                'Edit',
+                                                style: GoogleFonts.inter(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.normal,
+                                                  color:
+                                                      const Color(0xFF00744A),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const CommunityCsr(),
+                                                  ),
+                                                );
+                                                // Handle the "More" button click to navigate to another display
+                                                // You can use Navigator.push here
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.white,
+                                              ),
+                                              child: Text(
+                                                'Delete',
+                                                style: GoogleFonts.inter(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.normal,
+                                                  color:
+                                                      const Color(0xFF00744A),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      )),
+                      const SizedBox(height: 0),
+                      Expanded(
+                          child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: imagePaths.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          //  bool isReactClicked =
+                          false; // Track if the React button is clicked
+
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Container(
+                              width: 140,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Stack(
+                                alignment: Alignment.bottomRight,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.asset(
+                                          imagePaths[index],
+                                          height: 100,
+                                          width: 140,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        itemTexts1[index],
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        'Subtitle Text',
+                                        style: GoogleFonts.inter(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.normal,
+                                          color: const Color(0xFF00744A),
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Positioned(
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const CommunityEdit(),
                                                   ),
                                                 );
                                                 // Handle the "More" button click to navigate to another display
@@ -389,7 +393,9 @@ class _CommunityHomePageState extends State<CommunityHomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Add()),
+                              MaterialPageRoute(
+                                builder: (context) => const CommunityAdd(),
+                              ),
                             );
                             // Handle the "More" button click to navigate to another display
                             // You can use Navigator.push here
