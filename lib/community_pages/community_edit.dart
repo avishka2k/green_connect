@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Edit extends StatefulWidget {
-  const Edit({Key? key}) : super(key: key);
+class CommunityEdit extends StatefulWidget {
+  const CommunityEdit({Key? key}) : super(key: key);
 
   @override
-  State<Edit> createState() => _EditState();
+  State<CommunityEdit> createState() => _CommunityEditState();
 }
 
-class _EditState extends State<Edit> {
+class _CommunityEditState extends State<CommunityEdit> {
   String userName = "Chamaka";
   double availableBalance = 5000.00;
 
@@ -47,28 +47,28 @@ class _EditState extends State<Edit> {
           children: [
             InkWell(
               onTap: () {},
-              child: CircleAvatar(
+              child: const CircleAvatar(
                 radius: 15,
                 backgroundImage: AssetImage(
                     'assets/images/propic.png'), // Replace with the path to your profile picture asset
               ),
             ),
-            Spacer(),
-            SizedBox(width: 8),
+            const Spacer(),
+            const SizedBox(width: 8),
             Text(
               'Foss',
               style: GoogleFonts.inter(
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF18A689),
+                color: const Color(0xFF18A689),
               ),
             ),
-            Spacer(),
-            SizedBox(width: 8),
+            const Spacer(),
+            const SizedBox(width: 8),
             Stack(
               children: [
                 IconButton(
-                  icon: Icon(Icons.notifications_rounded),
-                  color: Color(0xFF18A689),
+                  icon: const Icon(Icons.notifications_rounded),
+                  color: const Color(0xFF18A689),
                   onPressed: () {
                     // Handle the right icon's onPressed event here
                   },
@@ -77,16 +77,16 @@ class _EditState extends State<Edit> {
                   right: 10,
                   top: 10,
                   child: Container(
-                    padding: EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(2),
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       minWidth: 16,
                       minHeight: 16,
                     ),
-                    child: Text(
+                    child: const Text(
                       '5',
                       style: TextStyle(
                         color: Colors.white,
@@ -107,26 +107,25 @@ class _EditState extends State<Edit> {
           padding: const EdgeInsets.only(top: 10.0, left: 16.0, right: 16.0),
           child: Column(
             children: [
-              TextField(
+              const TextField(
                 decoration: InputDecoration(labelText: 'Title'),
               ),
-              SizedBox(height: 16),
-              TextField(
+              const SizedBox(height: 16),
+              const TextField(
                 decoration: InputDecoration(labelText: 'Photo'),
               ),
-              SizedBox(height: 16),
-              TextField(
+              const SizedBox(height: 16),
+              const TextField(
                 decoration: InputDecoration(labelText: 'Description'),
                 maxLines: 5,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   // Add your logic here to handle the button click
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF00744A),
-
+                  backgroundColor: const Color(0xFF00744A),
                 ),
                 child: Text(
                   'Save',
