@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginpage/pages/csr.dart';
-import 'package:loginpage/pages/edit.dart';
-
-import 'Addpost.dart';
 
 class communityhomepage extends StatefulWidget {
   const communityhomepage({Key? key}) : super(key: key);

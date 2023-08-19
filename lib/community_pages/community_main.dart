@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'Communitypage.dart';
-
 class commain extends StatefulWidget {
   const commain({Key? key}) : super(key: key);
 
@@ -179,7 +177,7 @@ class _commainState extends State<commain> {
                             ),
                             SizedBox(height: 10,),
                             Text(
-                              ' Google Events is a service offered by Google that allows users to create, manage, and share events online. It provides a platform for organizing various types of events, such as meetings, conferences, webinars, parties, and more. Users can create event invitations, set event details like date, time, and location, and send out invites to guests.   Attendees can RSVP, view event details, and receive reminders. Google Events integrates with other Google services like Google Calendar, Gmail, and Google Meet, making it easy to schedule and join virtual meetings or video conferences. It provides a convenient and efficient way to plan and coordinate events, whether for personal, professional, or social purposes.',
+                              ' Google Events is a service offered by Google that allows users to create, manage, and share events online. It provides a platform for organizing various types of events, such as meetings, conferences, webinars, parties, and more. Users can create event invitations, set event details like date, time, and location, and send out invites to guests. Attendees can RSVP, view event details, and receive reminders. Google Events integrates with other Google services like Google Calendar, Gmail, and Google Meet, making it easy to schedule and join virtual meetings or video conferences. It provides a convenient and efficient way to plan and coordinate events, whether for personal, professional, or social purposes.',
                               style: GoogleFonts.inter(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 14,
