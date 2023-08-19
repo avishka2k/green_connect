@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_connect/community_pages/community_page.dart';
 
 class CommunityMain extends StatefulWidget {
   const CommunityMain({Key? key}) : super(key: key);
@@ -198,7 +199,8 @@ class _CommunityMainState extends State<CommunityMain> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => communitypage()),
+                              builder: (context) => const CommunityPage(),
+                            ),
                           ); // Handle the second button click here
                         },
                         style: ElevatedButton.styleFrom(
