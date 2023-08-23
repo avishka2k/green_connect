@@ -42,69 +42,7 @@ class _CommunitySearchState extends State<CommunitySearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          automaticallyImplyLeading: false,
-          title: Row(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {},
-                child: const CircleAvatar(
-                  radius: 15,
-                  backgroundImage: AssetImage('assets/images/propic.png'),
-                ),
-              ),
-              const Spacer(),
-              const SizedBox(width: 8),
-              Text(
-                'Community',
-                style: GoogleFonts.inter(
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF18A689),
-                ),
-              ),
-              const Spacer(),
-              const SizedBox(width: 8),
-              Stack(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.notifications_rounded),
-                    color: const Color(0xFF18A689),
-                    onPressed: () {
-                      // Handle the right icon's onPressed event here
-                    },
-                  ),
-                  Positioned(
-                    right: 10,
-                    top: 10,
-                    child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      constraints: const BoxConstraints(
-                        minWidth: 16,
-                        minHeight: 16,
-                      ),
-                      child: Text(
-                        '$notificationCount',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          centerTitle: true,
-        ),
+
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
