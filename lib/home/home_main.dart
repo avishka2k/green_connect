@@ -40,77 +40,14 @@ class _HomeMainState extends State<HomeMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          automaticallyImplyLeading: false,
-          title: Row(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {},
-                child: const CircleAvatar(
-                  radius: 15,
-                  backgroundImage: AssetImage(
-                      'assets/images/propic.png'), // Replace with the path to your profile picture asset
-                ),
-              ),
-              const Spacer(),
-              const SizedBox(width: 8),
-              Text(
-                'Home',
-                style: GoogleFonts.inter(
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF18A689),
-                ),
-              ),
-              const Spacer(),
-              const SizedBox(width: 8),
-              Stack(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.notifications_rounded),
-                    color: const Color(0xFF18A689),
-                    onPressed: () {
-                      // Handle the right icon's onPressed event here
-                    },
-                  ),
-                  Positioned(
-                    right: 10,
-                    top: 10,
-                    child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      constraints: const BoxConstraints(
-                        minWidth: 16,
-                        minHeight: 16,
-                      ),
-                      child: Text(
-                        '$notificationCount',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          centerTitle: true,
-        ),
+
         body: SingleChildScrollView(
             child: Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: Column(children: [
             Center(
               child: Container(
-                height: 150,
+                height: 170,
                 width: 370,
                 decoration: BoxDecoration(
                     gradient: const LinearGradient(
@@ -119,15 +56,8 @@ class _HomeMainState extends State<HomeMain> {
                       colors: [Color(0xFF69D199), Colors.white],
                       // Replace Colors.blue with your desired second color
                     ),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: Colors.grey.withOpacity(0.5),
-                    //     spreadRadius: 5,
-                    //     blurRadius: 7,
-                    //     offset: Offset(0, 3),
-                    //   ),
-                    // ],
-                    borderRadius: BorderRadius.circular(20)),
+
+                    borderRadius: BorderRadius.circular(7)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
