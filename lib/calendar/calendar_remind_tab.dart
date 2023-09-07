@@ -33,11 +33,11 @@ class _CalendarRemindTabState extends State<CalendarRemindTab> {
   final firestoreInstance = FirebaseFirestore.instance;
   final User? user = FirebaseAuth.instance.currentUser;
   List<Module> remind = [];
-
+  bool isLoading = true;
   @override
   void initState() {
-    super.initState();
     fetchModulesData();
+    super.initState();
   }
 
   @override
@@ -87,27 +87,49 @@ class _CalendarRemindTabState extends State<CalendarRemindTab> {
                 ],
               ),
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: remind.length,
-              itemBuilder: (context, index) {
-                return CalendarRemindCard(
-                  title: remind[index].title,
-                  note: remind[index].note,
-                  date: remind[index].date,
-                  time: remind[index].time,
-                  remind: remind[index].remind,
-                );
-              },
-            ),
+            isLoading
+                ? const Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: Center(child: CircularProgressIndicator()),
+                  )
+                : remind.isEmpty
+                    ? const Padding(
+                        padding: EdgeInsets.only(top: 100),
+                        child: Center(
+                          child: Text("No Remind available"),
+                        ),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: remind.isEmpty ? 1 : remind.length,
+                        itemBuilder: (context, index) {
+                          if (remind.isEmpty) {
+                            return const Padding(
+                              padding: EdgeInsets.only(top: 100),
+                              child: Center(
+                                child: Text("No Remind available"),
+                              ),
+                            );
+                          } else {
+                            return CalendarRemindCard(
+                              itemId: remind[index].remindID,
+                              title: remind[index].title,
+                              note: remind[index].note,
+                              date: remind[index].date,
+                              time: remind[index].time,
+                              remind: remind[index].remind,
+                            );
+                          }
+                        },
+                      ),
           ],
         ),
       ),
     );
   }
 
-  void fetchModulesData() async {
+  Future<void> fetchModulesData() async {
     try {
       final remindCollection = await firestoreInstance
           .collection("users")
@@ -115,7 +137,7 @@ class _CalendarRemindTabState extends State<CalendarRemindTab> {
           .collection("remind")
           .get();
 
-      List<Module> academicModules = remindCollection.docs.map((doc) {
+      List<Module> remindItem = remindCollection.docs.map((doc) {
         return Module(
           remindID: doc.id,
           title: doc.get("title"),
@@ -127,12 +149,14 @@ class _CalendarRemindTabState extends State<CalendarRemindTab> {
       }).toList();
 
       // Add the modules data for the current academic ID to the overall modules list
-      remind.addAll(academicModules);
+      remind.addAll(remindItem);
 
       // Update the widget state to reflect the changes
-      setState(() {});
+      setState(() {
+        isLoading = false;
+      });
     } catch (e) {
-      AppToastmsg.appToastMeassage('Error fetching modules data: $e');
+      AppToastmsg.appToastMeassage('Error fetching modules data!');
     }
   }
 }

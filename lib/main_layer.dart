@@ -5,6 +5,7 @@ import 'package:green_connect/side_menu/side_menu.dart';
 import 'app_color.dart';
 import 'calendar/calendar_main.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/community_pages/community_page.dart';
 
 class MainLayer extends StatefulWidget {
   const MainLayer({super.key});
@@ -23,10 +24,11 @@ class _MainLayerState extends State<MainLayer> {
       style: optionStyle,
     ),
     CalendarMain(),
-    Text(
-      'Search',
-      style: optionStyle,
-    ),
+    CommunityPage(),
+    // Text(
+    //   'Search',
+    //   style: optionStyle,
+    // ),
     ProfileMain()
   ];
 
