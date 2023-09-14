@@ -25,14 +25,6 @@ class MyHomePage extends StatelessWidget {
         ) ,
       ),
 
-      appBar: AppBar(
-        title: Text(
-          "Payments",
-          style: TextStyle(
-            color: Colors.green[800],
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         // flexibleSpace:Image.asset("assests/images(2).jpeg",
         //   fit: BoxFit.cover,
         // ),
@@ -251,40 +243,7 @@ class MyHomePage extends StatelessWidget {
             ),
 
 
-            // Enter amount -------------------------------------------------
-
-            const SizedBox(height: 10),
-            const Align(
-              alignment: FractionalOffset(0, 0.2),
-              child: Text(
-                'Amount :',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green,
-
-                        borderSide:
-                            const BorderSide(width: 1.5, color: Colors.green),
-                      ),
-                    ),
-                    value: selectedItem,
-                    items: items
-                        .map((item) => DropdownMenuItem<String>(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ))
-                        .toList(),
-                    onChanged: (item) => setState(() => selectedItem = item),
-                  ),
-
-                ),
-              ],
-            ),
-
-            // Enter amount -------------------------------------------------
+// Enter amount -------------------------------------------------
 
             const SizedBox(height: 10),
             const Align(
@@ -298,6 +257,7 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
+
 
             const SizedBox(height: 0),
             Column(
@@ -329,9 +289,6 @@ class MyHomePage extends StatelessWidget {
                 ),
 
 
-                // Pay now button
-
-
                 const SizedBox(height: 35),
                 ElevatedButton(
                   onPressed: () {},
@@ -349,14 +306,10 @@ class MyHomePage extends StatelessWidget {
 
               ],
             ),
-
-
-          ],
+          ]
+      
         ),
-
-      ),
-    );
-
+    ),
 
     // TabBarView(
     //   children: [
@@ -365,7 +318,7 @@ class MyHomePage extends StatelessWidget {
     //     Icon(Icons.directions_bike),
     //   ],
     // ),
-
+      );
   }
 }
 
