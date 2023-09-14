@@ -17,9 +17,10 @@ class AppBarWithMenu extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style: TextStyle(
-            color: Theme.of(context).primaryColor,
-            fontSize: 18,
-            fontWeight: FontWeight.w500),
+          color: Theme.of(context).primaryColor,
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+        ),
       ),
       actions: [
         Stack(

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:green_connect/components/app_menu_item.dart';
 import 'package:green_connect/side_menu/payments/payments_main.dart';
 import 'package:green_connect/side_menu/settings/settings_main.dart';
-
 import '../components/flutter_toast.dart';
 
 class SideMenu extends StatefulWidget {
@@ -52,46 +51,17 @@ class _SideMenuState extends State<SideMenu> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          FutureBuilder<Map<String, dynamic>?>(
-              future: fetchUserData(user!),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Center(
-                    child: Text('Error: ${snapshot.error}'),
-                  );
-                } else {
-                  final userData = snapshot.data;
-                  String username = userData!['username'] ?? 'No username';
-
-                  return UserAccountsDrawerHeader(
-                    accountName: Text(username),
-                    accountEmail: const Text("avishka@gmail.com"),
-                    currentAccountPicture: CircleAvatar(
-                      child: ClipOval(
-                        child: Image.network(
-                          'https://xsgames.co/randomusers/assets/avatars/male/77.jpg',
-                          // loadingBuilder: (context, child, loadingProgress) {
-                          //   if (loadingProgress == null) return child;
-                          //   return CircularProgressIndicator(
-                          //     value: loadingProgress.expectedTotalBytes !=
-                          //             null
-                          //         ? loadingProgress.cumulativeBytesLoaded /
-                          //             (loadingProgress.expectedTotalBytes ??
-                          //                 1)
-                          //         : null,
-                          //   );
-                          // },
-                          // errorBuilder: (context, error, stackTrace) {
-                          //   return const CircularProgressIndicator();
-                          // },
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              }),
+          UserAccountsDrawerHeader(
+            accountName: const Text("username"),
+            accountEmail: const Text("avishka@gmail.com"),
+            currentAccountPicture: CircleAvatar(
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/icons/card.png',
+                ),
+              ),
+            ),
+          ),
           AppMenuItem(
             icon: "exam",
             title: "Exam",
@@ -117,18 +87,6 @@ class _SideMenuState extends State<SideMenu> {
             },
           ),
           AppMenuItem(
-            icon: "settings",
-            title: "Settings",
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsMain(),
-                ),
-              );
-            },
-          ),
-          AppMenuItem(
             icon: "enq",
             title: "Enquiry Center",
             onTap: () {
@@ -143,6 +101,18 @@ class _SideMenuState extends State<SideMenu> {
           AppMenuItem(
             icon: "help",
             title: "Help",
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsMain(),
+                ),
+              );
+            },
+          ),
+          AppMenuItem(
+            icon: "settings",
+            title: "Settings",
             onTap: () {
               Navigator.push(
                 context,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../components/calendar_remind_card.dart';
-
 class CalendarClassTab extends StatelessWidget {
   const CalendarClassTab({super.key});
 
@@ -12,19 +10,19 @@ class CalendarClassTab extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
-            CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
+            // CalendarRemindCard(),
           ],
         ),
       ),

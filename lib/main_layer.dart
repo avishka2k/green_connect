@@ -1,7 +1,4 @@
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:green_connect/community_pages/community_home_page.dart';
-import 'package:green_connect/community_pages/community_main.dart';
-import 'package:green_connect/community_pages/community_search.dart';
 import 'package:green_connect/components/app_bar_with_menu.dart';
 import 'package:green_connect/home/home_main.dart';
 import 'package:green_connect/profile/profile_main.dart';
@@ -9,6 +6,7 @@ import 'package:green_connect/side_menu/side_menu.dart';
 import 'app_color.dart';
 import 'calendar/calendar_main.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/community_pages/community_page.dart';
 
 class MainLayer extends StatefulWidget {
   const MainLayer({super.key});
@@ -24,7 +22,11 @@ class _MainLayerState extends State<MainLayer> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomeMain(),
     CalendarMain(),
-    CommunitySearch(),
+    CommunityPage(),
+    // Text(
+    //   'Search',
+    //   style: optionStyle,
+    // ),
     ProfileMain()
   ];
 

@@ -43,6 +43,7 @@ class _ProfileAcademicDataState extends State<ProfileAcademicData> {
 
   List<Module> modules = [];
   List<Academic> academics = [];
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -55,38 +56,53 @@ class _ProfileAcademicDataState extends State<ProfileAcademicData> {
     return modules.isNotEmpty
         ? Flexible(
             fit: FlexFit.loose,
-            child: ListView.builder(
-              itemCount: modules.length,
-              itemBuilder: (context, index) {
-                return Table(
-                  columnWidths: const {
-                    0: FixedColumnWidth(60.0),
-                    2: FixedColumnWidth(30.0),
-                  },
-                  children: [
-                    TableRow(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 2),
-                          child: Text(modules[index].field1,
-                              style: const TextStyle(fontSize: 12.0)),
+            child: isLoading
+                ? const Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Center(child: CircularProgressIndicator()),
+                  )
+                : modules.isEmpty
+                    ? const Padding(
+                        padding: EdgeInsets.only(top: 100),
+                        child: Center(
+                          child: Text("No data available"),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 2),
-                          child: Text(modules[index].field2,
-                              style: const TextStyle(fontSize: 12.0)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 2),
-                          child: Text(modules[index].field3,
-                              style: const TextStyle(fontSize: 12.0)),
-                        ),
-                      ],
-                    ),
-                  ],
-                );
-              },
-            ),
+                      )
+                    : ListView.builder(
+                        itemCount: modules.length,
+                        itemBuilder: (context, index) {
+                          return Table(
+                            columnWidths: const {
+                              0: FixedColumnWidth(60.0),
+                              2: FixedColumnWidth(30.0),
+                            },
+                            children: [
+                              TableRow(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 2),
+                                    child: Text(modules[index].field1,
+                                        style: const TextStyle(fontSize: 12.0)),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 2),
+                                    child: Text(modules[index].field2,
+                                        style: const TextStyle(fontSize: 12.0)),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 2),
+                                    child: Text(modules[index].field3,
+                                        style: const TextStyle(fontSize: 12.0)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      ),
           )
         : const Center(
             child: Text("No data found."),
@@ -113,9 +129,11 @@ class _ProfileAcademicDataState extends State<ProfileAcademicData> {
             field3: doc.get("score"));
       }).toList();
 
-      setState(() {});
+      setState(() {
+        isLoading = false;
+      });
     } catch (e) {
-      AppToastmsg.appToastMeassage("Error fetching modules data: $e");
+      AppToastmsg.appToastMeassage("Error fetching modules data");
     }
   }
 }

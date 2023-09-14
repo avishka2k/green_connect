@@ -39,3 +39,73 @@ class AddUser extends StatelessWidget {
     );
   }
 }
+
+
+
+
+// import 'dart:io';
+// import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:flutter/material.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:green_connect/components/flutter_toast.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
+// class MyWidget extends StatefulWidget {
+//   const MyWidget({super.key});
+
+//   @override
+//   State<MyWidget> createState() => _MyWidgetState();
+// }
+
+// class _MyWidgetState extends State<MyWidget> {
+//   XFile? image;
+
+//   Future<void> _pickImage() async {
+//     final pickedImage =
+//         await ImagePicker().pickImage(source: ImageSource.gallery);
+//     setState(() {
+//       image = pickedImage;
+//     });
+//   }
+
+//   Future uploadImageToFirebase() async {
+//     String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+//     if (image != null) {
+//       final reference =
+//           FirebaseStorage.instance.ref().child('images/$fileName');
+//       final imageFile = File(image!.path);
+//       var snapshot = await reference.putFile(imageFile).whenComplete(() => {});
+//       var downloadUrl = await snapshot.ref.getDownloadURL();
+//       print(downloadUrl);
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     // Create a CollectionReference called users that references the firestore collection
+//     CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+//     return Scaffold(
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             image == null
+//                 ? Text('No image selected.')
+//                 : Image.file(File(image!.path)),
+//             ElevatedButton(
+//               onPressed: _pickImage,
+//               child: Text('Pick Image'),
+//             ),
+//             ElevatedButton(
+//               onPressed: uploadImageToFirebase,
+//               child: Text('Up Image'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
