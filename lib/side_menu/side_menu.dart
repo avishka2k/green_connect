@@ -52,7 +52,7 @@ class _SideMenuState extends State<SideMenu> {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("username"),
+            accountName: const Text("username"),
             accountEmail: const Text("avishka@gmail.com"),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(

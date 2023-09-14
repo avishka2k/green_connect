@@ -1,5 +1,3 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -53,324 +51,292 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.white,
 
       ),
-      body: Container(
+      body: Padding(
+        padding: const EdgeInsets.all(20),
 
-        child: Padding(
-          padding: EdgeInsets.all(20),
-
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 15),
-              const Align(
-                alignment: FractionalOffset(0, 0.2),
-                child: Text(
-                  'Details                             ',
-                  textAlign: TextAlign.start,
-                  style: const TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                  ),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 15),
+            const Align(
+              alignment: FractionalOffset(0, 0.2),
+              child: Text(
+                'Details                             ',
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
                 ),
               ),
+            ),
 
 
-              // Enter name ----------------------------------------------------
+            // Enter name ----------------------------------------------------
 
-              const SizedBox(height: 15),
-              const Align(
-                alignment: FractionalOffset(0, 0.2),
-                child: Text(
-                  "Student Name : ",
-                  textAlign: TextAlign.start,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                  ),
+            const SizedBox(height: 15),
+            const Align(
+              alignment: FractionalOffset(0, 0.2),
+              child: Text(
+                "Student Name : ",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
                 ),
               ),
+            ),
 
 
-              const SizedBox(height: 0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 450,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.green),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: TextField(
-                        decoration: InputDecoration(hintText: 'your name'),
-                        controller: _textEditingController,
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
+            const SizedBox(height: 0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  width: 450,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.green),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TextField(
+                      decoration: const InputDecoration(hintText: 'your name'),
+                      controller: _textEditingController,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
 
-                        ),
-                        keyboardType: TextInputType.text,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.singleLineFormatter,
-                        ],
-                        onChanged: (value) {},
                       ),
+                      keyboardType: TextInputType.text,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.singleLineFormatter,
+                      ],
+                      onChanged: (value) {},
                     ),
-                  ),
-
-
-                ],
-              ),
-
-              // Enter intake --------------------------------------------------
-
-              const SizedBox(height: 10),
-              const Align(
-                alignment: FractionalOffset(0, 0.2),
-                child: Text(
-                  'Intake :',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
                   ),
                 ),
+
+
+              ],
+            ),
+
+            // Enter intake --------------------------------------------------
+
+            const SizedBox(height: 10),
+            const Align(
+              alignment: FractionalOffset(0, 0.2),
+              child: Text(
+                'Intake :',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
               ),
+            ),
 
 
 
-              const SizedBox(height: 0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 450,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.green),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: TextField(
-                        decoration: InputDecoration(hintText: 'batch'),
-                        controller: _textEditingController,
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
+            const SizedBox(height: 0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  width: 450,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.green),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TextField(
+                      decoration: const InputDecoration(hintText: 'batch'),
+                      controller: _textEditingController,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
 
-                        ),
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.singleLineFormatter,
-                        ],
-                        onChanged: (value) {},
                       ),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.singleLineFormatter,
+                      ],
+                      onChanged: (value) {},
                     ),
-                  ),
-
-                ],
-              ),
-
-              // Enter degree --------------------------------------------------
-
-              const SizedBox(height: 10),
-              const Align(
-                alignment: FractionalOffset(0, 0.2),
-                child: Text(
-                  'Degree :',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
                   ),
                 ),
+
+              ],
+            ),
+
+            // Enter degree --------------------------------------------------
+
+            const SizedBox(height: 10),
+            const Align(
+              alignment: FractionalOffset(0, 0.2),
+              child: Text(
+                'Degree :',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
               ),
+            ),
 
 
-              const SizedBox(height: 0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 450,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.green),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: TextField(
-                        decoration: InputDecoration(hintText: 'degree name'),
-                        controller: _textEditingController,
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
+            const SizedBox(height: 0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  width: 450,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.green),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TextField(
+                      decoration: const InputDecoration(hintText: 'degree name'),
+                      controller: _textEditingController,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
 
-                        ),
-                        keyboardType: TextInputType.text,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.singleLineFormatter,
-                        ],
-                        onChanged: (value) {},
                       ),
+                      keyboardType: TextInputType.text,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.singleLineFormatter,
+                      ],
+                      onChanged: (value) {},
                     ),
                   ),
+                ),
 
 
-                ],
-              ),
+              ],
+            ),
 
-              // Enter fee type ------------------------------------------------
+            // Enter fee type ------------------------------------------------
 
-              const SizedBox(height: 10),
-              const Align(
-                alignment: FractionalOffset(0, 0.2),
-                child: Text(
-                  'Fee Type :',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                  ),
+            const SizedBox(height: 10),
+            const Align(
+              alignment: FractionalOffset(0, 0.2),
+              child: Text(
+                'Fee Type :',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
                 ),
               ),
+            ),
 
 
-              const SizedBox(height: 0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    child:SizedBox(
-                      width: 400,
-                      height: 58,
+            const SizedBox(height: 0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SizedBox(
+                  width: 400,
+                  height: 58,
 
-                      child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(width: 1.5, color: Colors.green),
-                          ),
-                        ),
-
-                        value: selectedItem,
-                        items: items.
-                        map((item) => DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(item, style: TextStyle(fontSize: 16),),
-                        ))
-                            .toList(),
-                        onChanged: (item) => setState(() => selectedItem = item),
+                  child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(width: 1.5, color: Colors.green),
                       ),
                     ),
 
-
-
-                    // width: 450,
-                    // decoration: BoxDecoration(
-                    //   border: Border.all(color: Colors.green),
-                    //   borderRadius: BorderRadius.circular(4),
-                    // ),
-
-                    // child: Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 8),
-                    //   child: TextField(
-                    //     decoration: InputDecoration(hintText: ''),
-                    //     controller: _textEditingController,
-                    //     textAlign: TextAlign.start,
-                    //     style: const TextStyle(
-                    //       fontSize: 18,
-                    //       fontWeight: FontWeight.normal,
-                    //
-                    //     ),
-                    //     keyboardType: TextInputType.text ,
-                    //     inputFormatters: <TextInputFormatter>[
-                    //       FilteringTextInputFormatter.singleLineFormatter,
-                    //     ],
-                    //     onChanged: (value) {},
-                    //   ),
-                    // ),
-                  ),
-
-
-                ],
-              ),
-
-              // Enter amount -------------------------------------------------
-
-              const SizedBox(height: 10),
-              const Align(
-                alignment: FractionalOffset(0, 0.2),
-                child: Text(
-                  'Amount :',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
+                    value: selectedItem,
+                    items: items.
+                    map((item) => DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(item, style: const TextStyle(fontSize: 16),),
+                    ))
+                        .toList(),
+                    onChanged: (item) => setState(() => selectedItem = item),
                   ),
                 ),
+
+
+              ],
+            ),
+
+            // Enter amount -------------------------------------------------
+
+            const SizedBox(height: 10),
+            const Align(
+              alignment: FractionalOffset(0, 0.2),
+              child: Text(
+                'Amount :',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
               ),
+            ),
 
 
-              const SizedBox(height: 0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 450,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.green),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: TextField(
-                        decoration: InputDecoration(hintText: 'LKR'),
-                        controller: _textEditingController,
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
+            const SizedBox(height: 0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  width: 450,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.green),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TextField(
+                      decoration: const InputDecoration(hintText: 'LKR'),
+                      controller: _textEditingController,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
 
-                        ),
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.singleLineFormatter,
-                        ],
-                        onChanged: (value) {},
                       ),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.singleLineFormatter,
+                      ],
+                      onChanged: (value) {},
                     ),
                   ),
+                ),
 
-                  const SizedBox(height: 35),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(150, 50),
-                    ),
-                    child: const Text(
-                      'Pay Now',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                const SizedBox(height: 35),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(150, 50),
+                  ),
+                  child: const Text(
+                    'Pay Now',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                ),
 
-                ],
-              ),
+              ],
+            ),
 
-            ],
-          ),
-
+          ],
         ),
+
       ),
 
     );
