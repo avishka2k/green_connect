@@ -40,9 +40,6 @@ class AddUser extends StatelessWidget {
   }
 }
 
-
-
-
 // import 'dart:io';
 // import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
@@ -108,4 +105,3 @@ class AddUser extends StatelessWidget {
 //     );
 //   }
 // }
-

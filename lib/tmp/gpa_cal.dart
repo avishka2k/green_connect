@@ -17,7 +17,6 @@ class _GPACalculatorState extends State<GPACalculator> {
     'A+',
     'F',
     'A+',
- 
   ]; // Your array of grades
   List<double> gradePoints = [];
   double totalCreditHours = 0;

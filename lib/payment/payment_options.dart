@@ -1,18 +1,21 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_connect/app_color.dart';
 import 'package:green_connect/components/app_bar_with_back.dart';
 import 'package:green_connect/components/app_text_form_field.dart';
+import 'package:green_connect/components/flutter_toast.dart';
 
-class PaymentEnterId extends StatefulWidget {
-  const PaymentEnterId({super.key});
+class PaymentOptions extends StatefulWidget {
+  const PaymentOptions({super.key});
 
   @override
-  State<PaymentEnterId> createState() => _PaymentEnterIdState();
+  State<PaymentOptions> createState() => _PaymentOptionsState();
 }
 
-class _PaymentEnterIdState extends State<PaymentEnterId> {
+class _PaymentOptionsState extends State<PaymentOptions> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController intakeController = TextEditingController();
   final TextEditingController degreeController = TextEditingController();
@@ -20,141 +23,205 @@ class _PaymentEnterIdState extends State<PaymentEnterId> {
 
   String? selectedItem;
 
-  List<String> items = ['Degree fee', 'Bridging Programme fee', 'Hostel fee'];
+  List<String> items = [
+    'Degree fee',
+    'Bridging Programme',
+    'Hostel Deposite',
+    'Registration Fee',
+    'Library Fee',
+    'Convocation Fee',
+    'Late Payment Fines',
+    'Pre Payment',
+    'Repeat Exam Fee',
+    'Late Payment Charges',
+    'Lateral Entry Fee',
+    'Other Fine',
+  ];
+
+  Future<Map<String, dynamic>?> fetchUserData(User user) async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> userData = await FirebaseFirestore
+          .instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      if (userData.exists) {
+        return userData.data();
+      } else {
+        AppToastmsg.appToastMeassage('User data not found in Firestore');
+        return null;
+      }
+    } catch (e) {
+      AppToastmsg.appToastMeassage('Failed to fetch user data: $e');
+      return null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: const AppBarWithBack(title: "Payments"),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: appPagePadding,
-          child: Column(
-            children: [
-              const SizedBox(height: 10),
-              const Align(
-                alignment: FractionalOffset(0, 0.2),
-                child: Text(
-                  'Details                             ',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: appPrimary,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              AppTextformfield(
-                field_controller: nameController,
-                labelText: 'Students Name',
-                hintText: '',
-                readOnly: true,
-                onTap: () {},
-                //isValidate: false,
-              ),
-              AppTextformfield(
-                field_controller: intakeController,
-                labelText: 'Intake',
-                hintText: '',
-                readOnly: true,
-                onTap: () {},
-                //isValidate: false,
-              ),
-              AppTextformfield(
-                field_controller: degreeController,
-                labelText: 'Degree',
-                hintText: '',
-                readOnly: true,
-                onTap: () {},
-                //isValidate: false,
-              ),
-              AppTextformfield(
-                field_controller: intakeController,
-                labelText: 'Intake',
-                hintText: '',
-                readOnly: true,
-                onTap: () {},
-                //isValidate: false,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
+      body: FutureBuilder<Map<String, dynamic>?>(
+        future: fetchUserData(user!),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          } else {
+            final userData = snapshot.data;
+            String name = userData!['name'] ?? 'Null';
+            String username = userData['username'] ?? 'Null';
+            String uid = userData['uid'] ?? 'Null';
+            String faculty = userData['faculty'] ?? 'Null';
+            String degree = userData['degree'] ?? 'Null';
+            String intake = userData['intake'] ?? 'Null';
+            String capitalizedName =
+                name.split(' ').map((word) => word.capitalize()).join(' ');
+            return SingleChildScrollView(
+              child: Padding(
+                padding: appPagePadding,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Fee Type",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: appBlack,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 3),
-                    DropdownButtonFormField<String>(
-                      value: selectedItem,
-                      items: items.map<DropdownMenuItem<String>>(
-                        (String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                            ),
-                          );
-                        },
-                      ).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          selectedItem = val;
-                        });
-                      },
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
+                    const SizedBox(height: 10),
+                    const Align(
+                      alignment: FractionalOffset(0, 0.2),
+                      child: Text(
+                        'Details                             ',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: appPrimary,
                         ),
                       ),
                     ),
+                    const SizedBox(height: 15),
+                    AppTextformfield(
+                      field_controller: intakeController,
+                      labelText: 'Student Id',
+                      hintText: uid,
+                      readOnly: true,
+                      onTap: () {},
+                      //isValidate: false,
+                    ),
+                    AppTextformfield(
+                      field_controller: nameController,
+                      labelText: 'Students Name',
+                      hintText: capitalizedName,
+                      readOnly: true,
+                      onTap: () {},
+                      //isValidate: false,
+                    ),
+                    AppTextformfield(
+                      field_controller: degreeController,
+                      labelText: 'Degree',
+                      hintText: degree,
+                      readOnly: true,
+                      onTap: () {},
+                      //isValidate: false,
+                    ),
+                    AppTextformfield(
+                      field_controller: intakeController,
+                      labelText: 'Intake',
+                      hintText: intake,
+                      readOnly: true,
+                      onTap: () {},
+                      //isValidate: false,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Fee Type",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: appBlack,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          DropdownButtonFormField<String>(
+                            value: selectedItem,
+                            items: items.map<DropdownMenuItem<String>>(
+                              (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                  ),
+                                );
+                              },
+                            ).toList(),
+                            onChanged: (val) {
+                              setState(() {
+                                selectedItem = val;
+                              });
+                            },
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    AppTextformfield(
+                      keyboardType: TextInputType.number,
+                      field_controller: amountController,
+                      labelText: 'Amount',
+                      hintText: '',
+                      onTap: () {},
+                      //isValidate: false,
+                    ),
+                    const SizedBox(height: 25),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              fixedSize: const Size(0, 60),
+                              backgroundColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            onPressed: () {
+                              // if (_formKey.currentState!.validate()) {
+                              //   addModuleData();
+                              // }
+                            },
+                            child: const Text(
+                              "Pay Now",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 25),
                   ],
                 ),
               ),
-              AppTextformfield(
-                field_controller: amountController,
-                labelText: 'Amount',
-                hintText: '',
-                onTap: () {},
-                //isValidate: false,
-              ),
-              const SizedBox(height: 25),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(0, 60),
-                        backgroundColor: Theme.of(context).primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
-                      onPressed: () {
-                        // if (_formKey.currentState!.validate()) {
-                        //   addModuleData();
-                        // }
-                      },
-                      child: const Text(
-                        "Pay Now",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 25),
-            ],
-          ),
-        ),
+            );
+          }
+        },
       ),
     );
+  }
+}
+
+extension StringExtensions on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1)}";
   }
 }
