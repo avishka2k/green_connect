@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class MyHomePage extends StatelessWidget {
+  MyHomePage({super.key});
+
   get _textEditingController => null;
 
   List<String> items = [
@@ -15,6 +17,14 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      appBar: AppBar(title: Text("Payments",
+        style: TextStyle(
+          color: Colors.green[800],
+          fontWeight: FontWeight.bold,
+        ) ,
+      ),
+
       appBar: AppBar(
         title: Text(
           "Payments",
@@ -27,11 +37,13 @@ class MyHomePage extends StatelessWidget {
         //   fit: BoxFit.cover,
         // ),
 
+
         elevation: 1.0,
         backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
+
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -48,6 +60,7 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
+
 
             // Enter name ----------------------------------------------------
 
@@ -84,6 +97,7 @@ class MyHomePage extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
+
                       ),
                       keyboardType: TextInputType.text,
                       inputFormatters: <TextInputFormatter>[
@@ -142,6 +156,7 @@ class MyHomePage extends StatelessWidget {
               ],
             ),
 
+
             // Enter degree --------------------------------------------------
 
             const SizedBox(height: 10),
@@ -157,6 +172,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
 
+
             const SizedBox(height: 0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -170,8 +186,9 @@ class MyHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: TextField(
-                      decoration:
-                          const InputDecoration(hintText: 'degree name'),
+
+                      decoration: const InputDecoration(hintText: 'degree name'),
+
                       controller: _textEditingController,
                       textAlign: TextAlign.start,
                       style: const TextStyle(
@@ -204,6 +221,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
 
+
             const SizedBox(height: 0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -215,6 +233,36 @@ class MyHomePage extends StatelessWidget {
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
+
+                        borderSide: const BorderSide(width: 1.5, color: Colors.green),
+                      ),
+                    ),
+                    value: selectedItem,
+                    items: items.
+                    map((item) => DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(item, style: const TextStyle(fontSize: 16),),
+                    ))
+                        .toList(),
+                    onChanged: (item) => setState(() => selectedItem = item),
+                  ),
+                ),
+              ],
+            ),
+
+
+            // Enter amount -------------------------------------------------
+
+            const SizedBox(height: 10),
+            const Align(
+              alignment: FractionalOffset(0, 0.2),
+              child: Text(
+                'Amount :',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+
                         borderSide:
                             const BorderSide(width: 1.5, color: Colors.green),
                       ),
@@ -231,6 +279,7 @@ class MyHomePage extends StatelessWidget {
                         .toList(),
                     onChanged: (item) => setState(() => selectedItem = item),
                   ),
+
                 ),
               ],
             ),
@@ -278,6 +327,11 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ),
                 ),
+
+
+                // Pay now button
+
+
                 const SizedBox(height: 35),
                 ElevatedButton(
                   onPressed: () {},
@@ -292,12 +346,17 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ),
                 ),
+
               ],
             ),
+
+
           ],
         ),
+
       ),
     );
+
 
     // TabBarView(
     //   children: [
@@ -306,6 +365,7 @@ class MyHomePage extends StatelessWidget {
     //     Icon(Icons.directions_bike),
     //   ],
     // ),
+
   }
 }
 
