@@ -13,6 +13,7 @@ class AppTextformfield extends StatelessWidget {
   final bool readOnly;
   final onTap;
   final initialValue;
+  final TextInputType? keyboardType;
   // ignore: prefer_const_constructors_in_immutables
   AppTextformfield(
       {Key? key,
@@ -24,6 +25,7 @@ class AppTextformfield extends StatelessWidget {
       this.suffix,
       this.readOnly = false,
       this.onTap,
+      this.keyboardType,
       this.initialValue})
       : super(key: key);
 
@@ -44,6 +46,7 @@ class AppTextformfield extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           TextFormField(
+            keyboardType: keyboardType,
             readOnly: readOnly,
             controller: field_controller,
             onTap: onTap,

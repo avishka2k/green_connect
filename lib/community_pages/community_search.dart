@@ -42,7 +42,6 @@ class _CommunitySearchState extends State<CommunitySearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         body: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
@@ -370,7 +369,8 @@ class _CommunitySearchState extends State<CommunitySearch> {
                                                     },
                                                     style: ElevatedButton
                                                         .styleFrom(
-                                                      backgroundColor: Colors.white,
+                                                      backgroundColor:
+                                                          Colors.white,
                                                       // shadowColor: Colors.transparent,
                                                       //  shape: RoundedRectangleBorder(
                                                       //    borderRadius: BorderRadius.only(
@@ -706,7 +706,8 @@ class _CommunitySearchState extends State<CommunitySearch> {
                                                     },
                                                     style: ElevatedButton
                                                         .styleFrom(
-                                                      backgroundColor: Colors.white,
+                                                      backgroundColor:
+                                                          Colors.white,
                                                       // shadowColor: Colors.transparent,
                                                       //  shape: RoundedRectangleBorder(
                                                       //    borderRadius: BorderRadius.only(

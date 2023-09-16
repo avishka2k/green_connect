@@ -17,24 +17,20 @@ class MainLayer extends StatefulWidget {
 
 class _MainLayerState extends State<MainLayer> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     HomeMain(),
-    CalendarMain(),
-    CommunityPage(),
-    // Text(
-    //   'Search',
-    //   style: optionStyle,
-    // ),
-    ProfileMain()
+    const CalendarMain(),
+    const CommunityPage(),
+    const ProfileMain()
   ];
+
+  List<String> title = ['Home', 'Calendar', 'Community', 'Profile'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWithMenu(
-        title: "Add Remind",
+      appBar: AppBarWithMenu(
+        title: title[_selectedIndex],
         notifications: 4,
       ),
       drawer: const SideMenu(),
