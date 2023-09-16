@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +18,10 @@ class PaymentOptions extends StatefulWidget {
 }
 
 class _PaymentOptionsState extends State<PaymentOptions> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController intakeController = TextEditingController();
-  final TextEditingController degreeController = TextEditingController();
+  final TextEditingController feeController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
+  final firestoreInstance = FirebaseFirestore.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
 
   String? selectedItem;
 
@@ -58,6 +60,40 @@ class _PaymentOptionsState extends State<PaymentOptions> {
     }
   }
 
+  String generateRandomReceipt() {
+    Random random = Random();
+    String characters = '0123456789';
+    String receipt = 'RP${characters[random.nextInt(characters.length)]}';
+
+    for (int i = 0; i < 5; i++) {
+      receipt += characters[random.nextInt(characters.length)];
+    }
+
+    return receipt;
+  }
+
+  void addModuleData() async {
+    DateTime paymentDate = DateTime.now();
+    try {
+      final payment = Payments(
+        receiptId: generateRandomReceipt(),
+        fee_type: selectedItem.toString(),
+        amount: double.parse(amountController.text),
+        payment_date: paymentDate,
+      );
+
+      await firestoreInstance
+          .collection("users")
+          .doc(user!.uid)
+          .collection("payments")
+          .add(payment.toJson());
+
+      //AppToastmsg.appToastMeassage('New remind added successfully.');
+    } catch (e) {
+      AppToastmsg.appToastMeassage('Error adding module data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
@@ -75,9 +111,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
           } else {
             final userData = snapshot.data;
             String name = userData!['name'] ?? 'Null';
-            String username = userData['username'] ?? 'Null';
             String uid = userData['uid'] ?? 'Null';
-            String faculty = userData['faculty'] ?? 'Null';
             String degree = userData['degree'] ?? 'Null';
             String intake = userData['intake'] ?? 'Null';
             String capitalizedName =
@@ -102,7 +136,6 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     ),
                     const SizedBox(height: 15),
                     AppTextformfield(
-                      field_controller: intakeController,
                       labelText: 'Student Id',
                       hintText: uid,
                       readOnly: true,
@@ -110,7 +143,6 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       //isValidate: false,
                     ),
                     AppTextformfield(
-                      field_controller: nameController,
                       labelText: 'Students Name',
                       hintText: capitalizedName,
                       readOnly: true,
@@ -118,7 +150,6 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       //isValidate: false,
                     ),
                     AppTextformfield(
-                      field_controller: degreeController,
                       labelText: 'Degree',
                       hintText: degree,
                       readOnly: true,
@@ -126,7 +157,6 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       //isValidate: false,
                     ),
                     AppTextformfield(
-                      field_controller: intakeController,
                       labelText: 'Intake',
                       hintText: intake,
                       readOnly: true,
@@ -198,6 +228,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                               // if (_formKey.currentState!.validate()) {
                               //   addModuleData();
                               // }
+                              addModuleData();
                             },
                             child: const Text(
                               "Pay Now",
@@ -224,4 +255,30 @@ extension StringExtensions on String {
   String capitalize() {
     return "${this[0].toUpperCase()}${substring(1)}";
   }
+}
+
+extension ModuleExtension on Payments {
+  Map<String, dynamic> toJson() {
+    return {
+      "receiptId": receiptId,
+      "fee_type": fee_type,
+      "amount": amount,
+      "payment_date": payment_date,
+    };
+  }
+}
+
+class Payments {
+  //final String paymentsId;
+  final String receiptId;
+  final String fee_type;
+  final double amount;
+  final DateTime payment_date;
+  Payments({
+    // required this.paymentsId,
+    required this.receiptId,
+    required this.fee_type,
+    required this.amount,
+    required this.payment_date,
+  });
 }

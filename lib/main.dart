@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/firebase/auth/auth_state_changes.dart';
+import 'package:green_connect/home/home_events_details.dart';
 import 'package:green_connect/payment/payment_top_up.dart';
+import 'package:green_connect/tmp/test_events_upload.dart';
 
 import 'payment/payment_options.dart';
 
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primaryColor: const Color(0xFF18A689),
       ),
-      home: PaymentOptions(),
+      home: AuthChanges(),
     );
   }
 }

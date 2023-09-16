@@ -135,6 +135,7 @@ class _PaymentTopUpState extends State<PaymentTopUp> {
               AppTextformfield(
                 field_controller: amountController,
                 labelText: 'Amount',
+                keyboardType: TextInputType.number,
                 hintText: '',
                 onTap: () {},
               ),
