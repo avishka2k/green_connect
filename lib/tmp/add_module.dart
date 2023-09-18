@@ -33,10 +33,13 @@ class _AddModuleState extends State<AddModule> {
       return;
     }
 
+    DocumentReference lecturerRef =
+        FirebaseFirestore.instance.collection('lecturers').doc(selectedItem);
+
     await FirebaseFirestore.instance.collection('module').add({
       'name': name.text,
       'code': code.text,
-      'lecturer': selectedItem,
+      'lecturer': lecturerRef,
       'semester': double.parse(semester.text),
       'credit': int.parse(credit.text),
     });
@@ -106,7 +109,7 @@ class _AddModuleState extends State<AddModule> {
                 items: items.map<DropdownMenuItem<String>>(
                   (Module value) {
                     return DropdownMenuItem<String>(
-                      value: value.name,
+                      value: value.itemsID,
                       child: Text(
                         value.name,
                       ),
