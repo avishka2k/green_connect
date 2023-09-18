@@ -1,7 +1,4 @@
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:green_connect/community_pages/community_home_page.dart';
-import 'package:green_connect/community_pages/community_main.dart';
-import 'package:green_connect/community_pages/community_search.dart';
 import 'package:green_connect/components/app_bar_with_menu.dart';
 import 'package:green_connect/home/home_main.dart';
 import 'package:green_connect/profile/profile_main.dart';
@@ -20,24 +17,20 @@ class MainLayer extends StatefulWidget {
 
 class _MainLayerState extends State<MainLayer> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     HomeMain(),
-    CalendarMain(),
-    CommunityPage(),
-    // Text(
-    //   'Search',
-    //   style: optionStyle,
-    // ),
-    ProfileMain()
+    const CalendarMain(),
+    const CommunityPage(),
+    const ProfileMain()
   ];
+
+  List<String> title = ['Home', 'Calendar', 'Community', 'Profile'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWithMenu(
-        title: "Add Remind",
+      appBar: AppBarWithMenu(
+        title: title[_selectedIndex],
         notifications: 4,
       ),
       drawer: const SideMenu(),

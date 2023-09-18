@@ -18,7 +18,16 @@ class _SideMenuState extends State<SideMenu> {
     await FirebaseAuth.instance.signOut();
   }
 
-  Future<Map<String, dynamic>?> fetchUserData(User user) async {
+  String currentUserName = 'loading...';
+
+  @override
+  void initState() {
+    super.initState();
+    User? user = FirebaseAuth.instance.currentUser;
+    fetchUserData(user!);
+  }
+
+  Future<void> fetchUserData(User user) async {
     try {
       DocumentSnapshot<Map<String, dynamic>> userData = await FirebaseFirestore
           .instance
@@ -27,21 +36,23 @@ class _SideMenuState extends State<SideMenu> {
           .get();
 
       if (userData.exists) {
-        return userData.data();
+        setState(() {
+          currentUserName = userData['name'];
+        });
       } else {
         AppToastmsg.appToastMeassage('User data not found in Firestore');
-        return null;
       }
     } catch (e) {
       AppToastmsg.appToastMeassage('Failed to fetch user data: $e');
-
-      return null;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
+
+    String capitalizedName =
+        currentUserName.split(' ').map((word) => word.capitalize()).join(' ');
 
     return Drawer(
       backgroundColor: Colors.white,
@@ -52,8 +63,8 @@ class _SideMenuState extends State<SideMenu> {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("username"),
-            accountEmail: const Text("avishka@gmail.com"),
+            accountName: Text(capitalizedName),
+            accountEmail: Text(user!.email.toString()),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.asset(
@@ -130,5 +141,11 @@ class _SideMenuState extends State<SideMenu> {
         ],
       ),
     );
+  }
+}
+
+extension StringExtensions on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1)}";
   }
 }

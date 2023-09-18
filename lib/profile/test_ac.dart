@@ -305,9 +305,6 @@ class _FirestoreExampleState extends State<FirestoreExample> {
   }
 }
 
-
-
-
 // users (collection)
 //   └── user_id (document)
 //        └── academic (collection)
@@ -322,7 +319,3 @@ class _FirestoreExampleState extends State<FirestoreExample> {
 //                               └── field2: value2
 //               ├── year1sem2_id (document)
 //               └── year2sem2_id (document)
-
-
-
-
