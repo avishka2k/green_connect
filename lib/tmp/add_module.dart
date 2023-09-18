@@ -1,5 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/components/flutter_toast.dart';
+
+class Module {
+  final String itemsID;
+  final String name;
+
+  Module({
+    required this.itemsID,
+    required this.name,
+  });
+}
 
 class AddModule extends StatefulWidget {
   const AddModule({super.key});
@@ -11,9 +22,11 @@ class AddModule extends StatefulWidget {
 class _AddModuleState extends State<AddModule> {
   final TextEditingController name = TextEditingController();
   final TextEditingController code = TextEditingController();
-  final TextEditingController lecturer = TextEditingController();
   final TextEditingController semester = TextEditingController();
   final TextEditingController credit = TextEditingController();
+
+  String? selectedItem;
+  List<Module> items = [];
 
   Future<void> _uploadLecturerData() async {
     if (name.text.isEmpty || code.text.isEmpty) {
@@ -23,7 +36,7 @@ class _AddModuleState extends State<AddModule> {
     await FirebaseFirestore.instance.collection('module').add({
       'name': name.text,
       'code': code.text,
-      'lecturer': lecturer.text,
+      'lecturer': selectedItem,
       'semester': double.parse(semester.text),
       'credit': int.parse(credit.text),
     });
@@ -31,28 +44,39 @@ class _AddModuleState extends State<AddModule> {
     setState(() {
       name.text = '';
       code.text = '';
-      lecturer.text = '';
       semester.text = '';
       credit.text = '';
     });
   }
 
-  String? selectedItem;
+  final firestoreInstance = FirebaseFirestore.instance;
 
-  List<String> items = [
-    'Degree fee',
-    'Bridging Programme',
-    'Hostel Deposite',
-    'Registration Fee',
-    'Library Fee',
-    'Convocation Fee',
-    'Late Payment Fines',
-    'Pre Payment',
-    'Repeat Exam Fee',
-    'Late Payment Charges',
-    'Lateral Entry Fee',
-    'Other Fine',
-  ];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchModulesData();
+  }
+
+  Future<void> fetchModulesData() async {
+    try {
+      final snapshot = await firestoreInstance.collection("lecturers").get();
+
+      items = snapshot.docs.map((doc) {
+        return Module(
+          itemsID: doc.id,
+          name: doc.get('name'),
+        );
+      }).toList();
+
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      AppToastmsg.appToastMeassage("Error fetching modules data: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +104,11 @@ class _AddModuleState extends State<AddModule> {
               DropdownButtonFormField<String>(
                 value: selectedItem,
                 items: items.map<DropdownMenuItem<String>>(
-                  (String value) {
+                  (Module value) {
                     return DropdownMenuItem<String>(
-                      value: value,
+                      value: value.name,
                       child: Text(
-                        value,
+                        value.name,
                       ),
                     );
                   },

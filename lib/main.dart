@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/tmp/add_lecturers.dart';
 import 'package:green_connect/tmp/add_module.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primaryColor: const Color(0xFF18A689),
       ),
-      home: AddModule(),
+      home: AddLecturer(),
     );
   }
 }
