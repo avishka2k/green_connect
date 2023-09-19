@@ -54,7 +54,8 @@ class DefaultFirebaseOptions {
     appId: '1:772366311772:android:c05c631e11c0559f316199',
     messagingSenderId: '772366311772',
     projectId: 'greenconnect-a973b',
-    databaseURL: 'https://greenconnect-a973b-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://greenconnect-a973b-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'greenconnect-a973b.appspot.com',
   );
 
@@ -63,9 +64,11 @@ class DefaultFirebaseOptions {
     appId: '1:772366311772:ios:1541711f659f39cb316199',
     messagingSenderId: '772366311772',
     projectId: 'greenconnect-a973b',
-    databaseURL: 'https://greenconnect-a973b-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://greenconnect-a973b-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'greenconnect-a973b.appspot.com',
-    iosClientId: '772366311772-6bijis5o70qa54riim1u01gh3o1qgokm.apps.googleusercontent.com',
+    iosClientId:
+        '772366311772-6bijis5o70qa54riim1u01gh3o1qgokm.apps.googleusercontent.com',
     iosBundleId: 'com.example.greenConnect',
   );
 }
