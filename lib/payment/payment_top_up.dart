@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:green_connect/app_color.dart';
@@ -15,6 +17,17 @@ class _PaymentTopUpState extends State<PaymentTopUp> {
   final TextEditingController amountController = TextEditingController();
   String? selectedItem;
   List<String> items = ['LKR', 'USD', 'NR'];
+  double topUpValue = 0.00;
+
+  Future<void> updateBalance() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    final firebase = await FirebaseFirestore.instance;
+
+    firebase
+        .collection('users')
+        .doc(user!.uid)
+        .update({'balance': FieldValue.increment(topUpValue)});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,52 +104,69 @@ class _PaymentTopUpState extends State<PaymentTopUp> {
                 ),
               ),
               const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Fee Type",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: appBlack,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 3),
-                    DropdownButtonFormField<String>(
-                      value: selectedItem,
-                      items: items.map<DropdownMenuItem<String>>(
-                        (String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                            ),
-                          );
-                        },
-                      ).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          selectedItem = val;
-                        });
-                      },
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              GridView.count(
+                crossAxisCount: 3,
+                childAspectRatio: 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                shrinkWrap: true,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        topUpValue = 100.00;
+                      });
+                    },
+                    child: const Text('100'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        topUpValue = 200.00;
+                      });
+                    },
+                    child: const Text('200'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        topUpValue = 500.00;
+                      });
+                    },
+                    child: const Text('500'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        topUpValue = 1000.00;
+                      });
+                    },
+                    child: const Text('1000'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        topUpValue = 2500.00;
+                      });
+                    },
+                    child: const Text('2500'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        topUpValue = 5000.00;
+                      });
+                    },
+                    child: const Text('5000'),
+                  ),
+                ],
               ),
+              const SizedBox(height: 20),
               AppTextformfield(
                 field_controller: amountController,
                 labelText: 'Amount',
                 keyboardType: TextInputType.number,
-                hintText: '',
+                hintText: topUpValue.toStringAsFixed(2),
                 onTap: () {},
               ),
               const SizedBox(height: 25),
@@ -151,7 +181,9 @@ class _PaymentTopUpState extends State<PaymentTopUp> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        updateBalance();
+                      },
                       child: const Text(
                         "TopUp Now",
                         style: TextStyle(color: Colors.white, fontSize: 18),
