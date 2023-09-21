@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:green_connect/app_color.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class CalendarEventCard extends StatelessWidget {
   final String? title;
-  final String? note;
+  final String? location;
   final String? date;
   final String? time;
-  final String? remind;
+  final String? eventdate;
   const CalendarEventCard({
     super.key,
     this.title,
-    this.note,
+    this.location,
     this.date,
     this.time,
-    this.remind,
+    this.eventdate,
   });
 
   @override
@@ -25,15 +26,6 @@ class CalendarEventCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
             color: Colors.white,
-            // gradient: LinearGradient(
-            //   colors: [
-            //     const Color(0x7a69D199).withOpacity(0.5),
-            //     const Color(0xff69D199).withOpacity(0.4),
-            //   ],
-            //   stops: const [0, 1],
-            //   begin: Alignment.topCenter,
-            //   end: Alignment.bottomCenter,
-            // ),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.shade400,
@@ -56,28 +48,20 @@ class CalendarEventCard extends StatelessWidget {
                 ),
               ),
               Text(
-                note.toString(),
+                eventdate.toString(),
                 style: const TextStyle(
-                  fontSize: 12,
-                  //color: HexColor("#00744A"),
-                  fontWeight: FontWeight.w500,
+                  fontSize: 11,
+                  color: Color.fromARGB(255, 43, 42, 42),
                 ),
               ),
               const SizedBox(height: 10),
               Row(
                 children: [
-                  Icon(
-                    Icons.location_pin,
-                    color: HexColor("#ff4747"),
-                    size: 18,
-                  ),
+                  const Icon(Icons.location_pin,
+                      size: 18, color: Colors.blueGrey),
                   Text(
-                    "library",
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: HexColor("#00744A"),
-                      fontWeight: FontWeight.w600,
-                    ),
+                    location.toString(),
+                    style: const TextStyle(fontSize: 12, color: appBlack),
                   ),
                 ],
               )

@@ -209,14 +209,3 @@ class _AppEventsCardState extends State<AppEventsCard> {
     );
   }
 }
-
-class StringToWidgetConverter {
-  static Widget convert(String widgetName) {
-    switch (widgetName) {
-      case 'EventDetialsPage':
-        return EventDetialsPage();
-      default:
-        return Container();
-    }
-  }
-}
