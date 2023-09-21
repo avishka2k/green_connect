@@ -27,7 +27,6 @@ class _AddEventsState extends State<AddEvents> {
 
   void _date_picker() {
     DateTime selected_date = DateTime.now();
-    String formattedDate = '';
     showDatePicker(
             context: context,
             initialDate: DateTime.now(),
@@ -36,8 +35,7 @@ class _AddEventsState extends State<AddEvents> {
         .then((value) {
       setState(() {
         selected_date = value!;
-        formattedDate = DateFormat('yyyy/MM/dd').format(selected_date);
-        _dateController.text = formattedDate;
+        _dateController.text = selected_date.toLocal().toString();
       });
     });
   }
@@ -85,7 +83,7 @@ class _AddEventsState extends State<AddEvents> {
       'location': _locationController.text,
       'timeStart': _timeStartController.text,
       'timeEnd': _timeEndController.text,
-      'date': _dateController.text,
+      'date': Timestamp.fromDate(DateTime.parse(_dateController.text)),
       'about': _aboutController.text,
       'imageUrl': imageUrl,
     });

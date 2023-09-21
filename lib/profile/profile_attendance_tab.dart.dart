@@ -228,15 +228,15 @@ class Module {
   Module({required this.moduleID, required this.field1, required this.field2});
 }
 
-class FirestoreExample extends StatefulWidget {
+class ProfileAttendanceTab extends StatefulWidget {
   final String academicID;
-  const FirestoreExample({super.key, required this.academicID});
+  const ProfileAttendanceTab({super.key, required this.academicID});
 
   @override
-  _FirestoreExampleState createState() => _FirestoreExampleState();
+  _ProfileAttendanceTabState createState() => _ProfileAttendanceTabState();
 }
 
-class _FirestoreExampleState extends State<FirestoreExample> {
+class _ProfileAttendanceTabState extends State<ProfileAttendanceTab> {
   final firestoreInstance = FirebaseFirestore.instance;
   final User? user = FirebaseAuth.instance.currentUser;
   //final Academic academic = Academic(academicID: "academic_id");

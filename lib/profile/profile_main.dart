@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:green_connect/profile/test_ac.dart';
+import 'package:green_connect/profile/profile_attendance_tab.dart.dart';
 import 'profile_student_tab.dart';
-import 'profile_academic_tab.dart';
+import 'profile_academic_tab2.dart';
 //import 'profile_attendance_tab.dart';
 
 class ProfileMain extends StatelessWidget {
@@ -79,7 +79,7 @@ class ProfileMain extends StatelessWidget {
                 children: [
                   ProfileStudentTab(),
                   ProfileAcademicTab(),
-                  FirestoreExample(academicID: "year4sem2")
+                  ProfileAttendanceTab(academicID: "year4sem2")
                   //profile_attendance_tab(),
                 ],
               ),

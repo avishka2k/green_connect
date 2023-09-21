@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:green_connect/app_color.dart';
 import 'package:green_connect/components/app_events_card.dart';
 import 'package:green_connect/components/flutter_toast.dart';
+import 'package:green_connect/models/myclass.dart';
 import 'package:green_connect/payment/payment_top_up.dart';
+import 'package:intl/intl.dart';
 
 class HomeMain extends StatefulWidget {
   const HomeMain({Key? key}) : super(key: key);
@@ -19,11 +21,15 @@ class _HomeMainState extends State<HomeMain> {
   double availableBalance = 0.00;
   User? user = FirebaseAuth.instance.currentUser;
   final firestore = FirebaseFirestore.instance;
+  List<MyClass> myclass = [];
+  bool isLoading = true;
+  String currentDate = DateFormat('y-MM-dd').format(DateTime.now());
 
   @override
   void initState() {
     super.initState();
     getUserDate();
+    fetchModulesData();
   }
 
   Future<void> getUserDate() async {
@@ -51,6 +57,7 @@ class _HomeMainState extends State<HomeMain> {
 
   Future<void> _refreshData() async {
     await getUserDate();
+    await fetchModulesData();
   }
 
   @override
@@ -164,90 +171,153 @@ class _HomeMainState extends State<HomeMain> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(8),
-                    elevation: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Today Lectures', // Today Lectures text
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: appBlack,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text(
-                            'Mobile Application development ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Color(0xff00744A),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          const Text(
-                            '1:00 PM - 4.00 PM (UTC) ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 14,
-                              color: Color(0xff00744A),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
-                            children: [
-                              InkWell(
-                                onTap: () {},
-                                child: const CircleAvatar(
-                                  radius: 12,
-                                  backgroundImage: AssetImage(
-                                    'assets/images/propic.png',
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              const Text(
-                                'Mr. Sanka Piris',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  color: Color(0xFF00744A),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 10.0),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.location_on,
-                                  color: Color(0xFF00744A),
-                                  size: 20,
-                                ),
-                                SizedBox(width: 5),
-                                Text(
-                                  'FOC - C1-L- 009',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFF00744A),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text(
+                    'Today Lectures',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: appBlack,
                     ),
                   ),
                 ),
+                isLoading
+                    ? const Padding(
+                        padding: EdgeInsets.only(top: 100),
+                        child: Center(child: CircularProgressIndicator()),
+                      )
+                    : myclass.isEmpty
+                        ? const Padding(
+                            padding: EdgeInsets.only(top: 100),
+                            child: Center(
+                              child: Text("No class available"),
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: myclass.length,
+                            itemBuilder: (context, index) {
+                              // String eventdate = DateFormat('E, MMM d, y')
+                              //     .format(myclass[index]['date']);
+                              if (myclass.isEmpty) {
+                                return const Padding(
+                                  padding: EdgeInsets.only(top: 100),
+                                  child: Center(
+                                    child: Text("No Class available"),
+                                  ),
+                                );
+                              } else {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) => EventDetialsPage(
+                                    //       eventId: widget.events[index].eventID,
+                                    //     ),
+                                    //   ),
+                                    // );
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 5, horizontal: 5),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.shade400,
+                                            //spreadRadius: 1,
+                                            blurRadius: 1,
+                                            blurStyle: BlurStyle.solid,
+                                            offset: Offset.zero,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const SizedBox(height: 5),
+                                            Text(
+                                              myclass[index].module,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                                color: Color(0xff00744A),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 5),
+                                            Text(
+                                              '${myclass[index].startTime} - ${myclass[index].endTime} (UTC)',
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 14,
+                                                color: Color(0xff00744A),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            Row(
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {},
+                                                  child: CircleAvatar(
+                                                    radius: 12,
+                                                    backgroundImage:
+                                                        NetworkImage(
+                                                      myclass[index]
+                                                          .lecturerImage,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 5),
+                                                Text(
+                                                  myclass[index].lecturerName,
+                                                  style: const TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    color: Color(0xFF00744A),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10.0),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.location_on,
+                                                    color: Color(0xFF00744A),
+                                                    size: 20,
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Text(
+                                                    myclass[index].location,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      color: Color(0xFF00744A),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
                 const AppEventsCard(
                   listTitle: 'Upcoming Events',
                   colName: 'events',
@@ -264,5 +334,50 @@ class _HomeMainState extends State<HomeMain> {
         ),
       ),
     );
+  }
+
+  Future<void> fetchModulesData() async {
+    try {
+      final currentDate = DateTime.now();
+      final startOfToday =
+          DateTime(currentDate.year, currentDate.month, currentDate.day);
+      final endOfToday = startOfToday.add(const Duration(days: 1));
+
+      final remindCollection = await firestore
+          .collection('todayLec')
+          .where('date',
+              isGreaterThanOrEqualTo: Timestamp.fromDate(startOfToday))
+          .where('date', isLessThan: Timestamp.fromDate(endOfToday))
+          .get();
+
+      myclass = await Future.wait(remindCollection.docs.map((doc) async {
+        DocumentReference moduleRef = doc.get('module');
+        DocumentReference lecturerRef = doc.get('lecturer');
+        DocumentSnapshot moduleSnapshot = await moduleRef.get();
+        DocumentSnapshot lecturerSnapshot = await lecturerRef.get();
+
+        String moduleName = moduleSnapshot.get('name');
+        String lecturerName = lecturerSnapshot.get('name');
+        String lecturerImage = lecturerSnapshot.get('imageUrl');
+
+        return MyClass(
+          classID: doc.id,
+          module: moduleName,
+          location: doc.get("location"),
+          lecturerImage: lecturerImage,
+          lecturerName: lecturerName,
+          startTime: doc.get('startTime'),
+          date: doc.get("date").toDate(),
+          endTime: doc.get('endTime'),
+        );
+      }).toList());
+
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      print(e);
+      AppToastmsg.appToastMeassage('Error fetching modules data: $e');
+    }
   }
 }
