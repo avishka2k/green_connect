@@ -75,7 +75,6 @@ class _CalendarMainState extends State<CalendarMain> {
     for (int day = startDay; day <= endDay; day++) {
       DateTime date = DateTime(selectedDate.year, selectedDate.month, day);
       String dayName = DateFormat.E().format(date).substring(0, 3);
-
       containers.add(
         GestureDetector(
           onTap: () => changeDay(day),
@@ -126,6 +125,10 @@ class _CalendarMainState extends State<CalendarMain> {
   Widget build(BuildContext context) {
     String monthName = DateFormat.MMMM().format(selectedDate);
 
+    DateTime selectDate =
+        DateTime(selectedDate.year, selectedDate.month, selectedDay);
+    print('--------------------');
+    print(selectDate);
     return Scaffold(
       body: DefaultTabController(
         length: 3,
@@ -280,12 +283,12 @@ class _CalendarMainState extends State<CalendarMain> {
               const SizedBox(height: 10),
 
               // TabBarView
-              const Expanded(
+              Expanded(
                 child: TabBarView(
                   children: [
-                    CalendarClassTab(),
-                    CalendarEventsTab(),
-                    CalendarRemindTab()
+                    const CalendarClassTab(),
+                    CalendarEventsTab(selectDate: selectDate),
+                    const CalendarRemindTab()
                   ],
                 ),
               ),

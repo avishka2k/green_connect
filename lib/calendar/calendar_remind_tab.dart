@@ -40,6 +40,10 @@ class _CalendarRemindTabState extends State<CalendarRemindTab> {
     super.initState();
   }
 
+  Future<void> _refreshData() async {
+    await fetchModulesData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
