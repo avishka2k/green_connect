@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:green_connect/app_color.dart';
 import 'package:green_connect/components/app_events_card.dart';
@@ -8,7 +7,7 @@ import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/payment/payment_top_up.dart';
 
 class HomeMain extends StatefulWidget {
-  HomeMain({Key? key}) : super(key: key);
+  const HomeMain({Key? key}) : super(key: key);
 
   @override
   State<HomeMain> createState() => _HomeMainState();

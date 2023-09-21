@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:green_connect/app_color.dart';
 import 'package:green_connect/components/app_bar_with_back.dart';
 import 'package:green_connect/components/app_text_form_field.dart';
@@ -21,7 +20,7 @@ class _PaymentTopUpState extends State<PaymentTopUp> {
 
   Future<void> updateBalance() async {
     User? user = FirebaseAuth.instance.currentUser;
-    final firebase = await FirebaseFirestore.instance;
+    final firebase = FirebaseFirestore.instance;
 
     firebase
         .collection('users')

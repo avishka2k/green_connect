@@ -54,56 +54,54 @@ class _ProfileAcademicDataState extends State<ProfileAcademicData> {
   @override
   Widget build(BuildContext context) {
     return modules.isNotEmpty
-        ? Flexible(
-            fit: FlexFit.loose,
-            child: isLoading
+        ? isLoading
+            ? const Padding(
+                padding: EdgeInsets.only(top: 50),
+                child: Center(child: CircularProgressIndicator()),
+              )
+            : modules.isEmpty
                 ? const Padding(
-                    padding: EdgeInsets.only(top: 50),
-                    child: Center(child: CircularProgressIndicator()),
+                    padding: EdgeInsets.only(top: 100),
+                    child: Center(
+                      child: Text("No data available"),
+                    ),
                   )
-                : modules.isEmpty
-                    ? const Padding(
-                        padding: EdgeInsets.only(top: 100),
-                        child: Center(
-                          child: Text("No data available"),
-                        ),
-                      )
-                    : ListView.builder(
-                        itemCount: modules.length,
-                        itemBuilder: (context, index) {
-                          return Table(
-                            columnWidths: const {
-                              0: FixedColumnWidth(60.0),
-                              2: FixedColumnWidth(30.0),
-                            },
+                : ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: modules.length,
+                    itemBuilder: (context, index) {
+                      return Table(
+                        columnWidths: const {
+                          0: FixedColumnWidth(60.0),
+                          2: FixedColumnWidth(30.0),
+                        },
+                        children: [
+                          TableRow(
                             children: [
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    child: Text(modules[index].field1,
-                                        style: const TextStyle(fontSize: 12.0)),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    child: Text(modules[index].field2,
-                                        style: const TextStyle(fontSize: 12.0)),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    child: Text(modules[index].field3,
-                                        style: const TextStyle(fontSize: 12.0)),
-                                  ),
-                                ],
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 2),
+                                child: Text(modules[index].field1,
+                                    style: const TextStyle(fontSize: 12.0)),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 2),
+                                child: Text(modules[index].field2,
+                                    style: const TextStyle(fontSize: 12.0)),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 2),
+                                child: Text(modules[index].field3,
+                                    style: const TextStyle(fontSize: 12.0)),
                               ),
                             ],
-                          );
-                        },
-                      ),
-          )
+                          ),
+                        ],
+                      );
+                    },
+                  )
         : const Center(
             child: Text("No data found."),
           );

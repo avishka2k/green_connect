@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:green_connect/components/app_menu_item.dart';
 import 'package:green_connect/side_menu/payments/payments_main.dart';
 import 'package:green_connect/side_menu/settings/settings_main.dart';
+import 'package:green_connect/side_menu/transaction/transaction_main.dart';
 import '../components/flutter_toast.dart';
 
 class SideMenu extends StatefulWidget {
@@ -51,8 +52,10 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
 
-    String capitalizedName =
-        currentUserName.split(' ').map((word) => word.capitalize()).join(' ');
+    String capitalizedName = currentUserName
+        .split(' ')
+        .map((word) => word.capitalizeword())
+        .join(' ');
 
     return Drawer(
       backgroundColor: Colors.white,
@@ -92,7 +95,19 @@ class _SideMenuState extends State<SideMenu> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const PaymentsMain(),
+                  builder: (context) => const PaymentOptions(),
+                ),
+              );
+            },
+          ),
+          AppMenuItem(
+            icon: "card",
+            title: "Transaction",
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const TransactionMain(),
                 ),
               );
             },
@@ -145,7 +160,7 @@ class _SideMenuState extends State<SideMenu> {
 }
 
 extension StringExtensions on String {
-  String capitalize() {
+  String capitalizeword() {
     return "${this[0].toUpperCase()}${substring(1)}";
   }
 }
