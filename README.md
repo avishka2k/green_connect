@@ -69,6 +69,7 @@ In conclusion, the development of a mobile app using Flutter presents a transfor
 
 👏 Let's take a moment to acknowledge and thank the following contributors (in no particular order):
 
+- [@IsuruUSenarathne](https://github.com/avishka2k)
 - [@IsuruUSenarathne](https://github.com/IsuruUSenarathne)
 - [@JanithaChamaka](https://github.com/JanithaChamaka)
 - [@Hiruni2000](https://github.com/Hiruni2000)
