@@ -157,6 +157,7 @@ class ProfileAcademicTab extends StatelessWidget {
               ),
             ),
             const ProfileAcademicData(yearsem: "year1sem1"),
+            const SizedBox(height: 50),
           ],
         ),
       ),

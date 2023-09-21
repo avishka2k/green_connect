@@ -8,76 +8,16 @@ import 'package:green_connect/home/home_events_details.dart';
 import 'package:green_connect/models/events.dart';
 import 'package:intl/intl.dart';
 
-class Module {
-  final String remindID;
-  final String title;
-  final String note;
-  final String date;
-  final String time;
-  final String remind;
-  Module({
-    required this.remindID,
-    required this.title,
-    required this.note,
-    required this.date,
-    required this.time,
-    required this.remind,
-  });
-}
-
 class CalendarEventsTab extends StatefulWidget {
-  DateTime selectDate;
-  CalendarEventsTab({super.key, required this.selectDate});
+  final List<Events> events;
+  bool isLoading;
+  CalendarEventsTab({super.key, required this.events, required this.isLoading});
 
   @override
   State<CalendarEventsTab> createState() => _CalendarEventsTabState();
 }
 
 class _CalendarEventsTabState extends State<CalendarEventsTab> {
-  final firestoreInstance = FirebaseFirestore.instance;
-
-  final User? user = FirebaseAuth.instance.currentUser;
-
-  List<Events> event = [];
-
-  bool isLoading = true;
-
-  @override
-  void initState() {
-    fetchModulesData();
-    super.initState();
-  }
-
-  Future<void> fetchModulesData() async {
-    try {
-      final remindCollection =
-          await firestoreInstance.collection('events').get();
-
-      String currentDate = DateFormat('y-MM-dd').format(widget.selectDate);
-      print('-----hhhhh-------');
-      print(currentDate);
-      event = remindCollection.docs
-          .map((doc) {
-            return Events(
-              eventID: doc.id,
-              title: doc.get("title"),
-              timeStart: doc.get("timeStart").toDate(),
-              imageUrl: doc.get("imageUrl"),
-              location: doc.get("location"),
-            );
-          })
-          .where((event) =>
-              DateFormat('y-MM-dd').format(event.timeStart) == currentDate)
-          .toList();
-
-      setState(() {
-        isLoading = false;
-      });
-    } catch (e) {
-      AppToastmsg.appToastMeassage('Error fetching modules data!');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -85,12 +25,12 @@ class _CalendarEventsTabState extends State<CalendarEventsTab> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            isLoading
+            widget.isLoading
                 ? const Padding(
                     padding: EdgeInsets.only(top: 100),
                     child: Center(child: CircularProgressIndicator()),
                   )
-                : event.isEmpty
+                : widget.events.isEmpty
                     ? const Padding(
                         padding: EdgeInsets.only(top: 100),
                         child: Center(
@@ -100,11 +40,12 @@ class _CalendarEventsTabState extends State<CalendarEventsTab> {
                     : ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: event.isEmpty ? 1 : event.length,
+                        itemCount:
+                            widget.events.isEmpty ? 1 : widget.events.length,
                         itemBuilder: (context, index) {
                           String eventdate = DateFormat('E, MMM d, y')
-                              .format(event[index].timeStart);
-                          if (event.isEmpty) {
+                              .format(widget.events[index].timeStart);
+                          if (widget.events.isEmpty) {
                             return const Padding(
                               padding: EdgeInsets.only(top: 100),
                               child: Center(
@@ -118,14 +59,14 @@ class _CalendarEventsTabState extends State<CalendarEventsTab> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => EventDetialsPage(
-                                      eventId: event[index].eventID,
+                                      eventId: widget.events[index].eventID,
                                     ),
                                   ),
                                 );
                               },
                               child: CalendarEventCard(
-                                title: event[index].title,
-                                location: event[index].location,
+                                title: widget.events[index].title,
+                                location: widget.events[index].location,
                                 eventdate: eventdate,
                               ),
                             );

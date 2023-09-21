@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_connect/app_color.dart';
 import 'package:green_connect/calendar/calendar_class_tab.dart';
 import 'package:green_connect/calendar/calendar_events_tab.dart';
 import 'package:green_connect/calendar/calendar_remind_tab.dart';
+import 'package:green_connect/components/flutter_toast.dart';
+import 'package:green_connect/models/events.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 
@@ -17,7 +21,7 @@ class _CalendarMainState extends State<CalendarMain> {
   DateTime selectedDate = DateTime.now();
   int selectedDay = DateTime.now().day;
   ScrollController scrollController = ScrollController();
-  int selectedTabIndex = 0; // 0 for Class tab, 1 for Events tab
+  int selectedTabIndex = 0;
 
   void changeMonth(int increment) {
     setState(() {
@@ -32,7 +36,6 @@ class _CalendarMainState extends State<CalendarMain> {
     setState(() {
       int maxDays = DateTime(selectedDate.year, selectedDate.month + 1, 0).day;
       if (day < 1 || day > maxDays) {
-        // Change to the next month
         int increment = day > maxDays ? 1 : -1;
         selectedDate = DateTime(selectedDate.year,
             selectedDate.month + increment, selectedDate.day);
@@ -40,7 +43,7 @@ class _CalendarMainState extends State<CalendarMain> {
         scrollController.jumpTo(0);
       } else {
         selectedDay = day;
-        double offset = (day - 3) * 70.0; // Adjust the value as per your design
+        double offset = (day - 3) * 70.0;
         scrollController.animateTo(
           offset,
           duration: const Duration(milliseconds: 300),
@@ -113,10 +116,49 @@ class _CalendarMainState extends State<CalendarMain> {
     return containers;
   }
 
+  DateTime selectDate = DateTime.now();
+  final firestoreInstance = FirebaseFirestore.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
+  List<Events> event = [];
+  bool isLoading = true;
+
+  Future<void> fetchModulesData() async {
+    try {
+      final remindCollection =
+          await firestoreInstance.collection('events').get();
+
+      String currentDate = DateFormat('y-MM-dd').format(selectDate);
+
+      event = remindCollection.docs
+          .map((doc) {
+            return Events(
+              eventID: doc.id,
+              title: doc.get("title"),
+              timeStart: doc.get("timeStart").toDate(),
+              imageUrl: doc.get("imageUrl"),
+              location: doc.get("location"),
+            );
+          })
+          .where((event) =>
+              DateFormat('y-MM-dd').format(event.timeStart) == currentDate)
+          .toList();
+
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      AppToastmsg.appToastMeassage('Error fetching modules data!');
+    }
+  }
+
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {
       setState(() {});
+    });
+    fetchModulesData();
+    setState(() {
+      selectDate = DateTime(selectedDate.year, selectedDate.month, selectedDay);
     });
     super.initState();
   }
@@ -125,8 +167,6 @@ class _CalendarMainState extends State<CalendarMain> {
   Widget build(BuildContext context) {
     String monthName = DateFormat.MMMM().format(selectedDate);
 
-    DateTime selectDate =
-        DateTime(selectedDate.year, selectedDate.month, selectedDay);
     print('--------------------');
     print(selectDate);
     return Scaffold(
@@ -211,7 +251,9 @@ class _CalendarMainState extends State<CalendarMain> {
                     ),
                     ...buildDayContainers(),
                     GestureDetector(
-                      onTap: () => changeDay(selectedDay + 1),
+                      onTap: () {
+                        changeDay(selectedDay + 1);
+                      },
                       child: Container(
                         width: 30,
                         height: 30,
@@ -286,8 +328,11 @@ class _CalendarMainState extends State<CalendarMain> {
               Expanded(
                 child: TabBarView(
                   children: [
-                    const CalendarClassTab(),
-                    CalendarEventsTab(selectDate: selectDate),
+                    CalendarClassTab(),
+                    CalendarEventsTab(
+                      isLoading: isLoading,
+                      events: event,
+                    ),
                     const CalendarRemindTab()
                   ],
                 ),

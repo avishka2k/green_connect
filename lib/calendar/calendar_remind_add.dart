@@ -239,7 +239,7 @@ class _CalendarRemindAddState extends State<CalendarRemindAdd> {
           .add(module1.toJson());
 
       AppToastmsg.appToastMeassage('New remind added successfully.');
-      // ignore: use_build_context_synchronously
+
       Navigator.of(context).pop();
     } catch (e) {
       AppToastmsg.appToastMeassage('Error adding module data: $e');

@@ -7,7 +7,6 @@ import 'package:green_connect/components/flutter_toast.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 // import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 //import 'package:assets_audio_player/assets_audio_player.dart';
 
@@ -111,33 +110,6 @@ class _scannerState extends State<scanner> {
 
           print('Scanned QR code: ${barcode.code}');
           // if (historyStatus != false) {
-          //   setState(() {
-          //     recentTitle.add(barcode.code.toString());
-          //     recentDate.add(Jiffy().format("MMMM do yyyy, h:mm a"));
-          //     recentTitleData();
-          //     recentDateData();
-          //   });
-          // }
-          // if (vibrationStatus != false) {
-          //   Vibrate.vibrate();
-          // }
-          // if (soundStatus != false) {
-          //   // assetsAudioPlayer.open(
-          //   //   Audio("assets/sound/notification.mp3"),
-          //   // );
-          // }
-
-          // if (autoWeb != false) {
-          //   final Uri url = Uri.parse(barcode.code.toString());
-          //   if (!await launchUrl(url)) throw 'Could not launch $url';
-          // } else {
-          //   await Navigator.of(context).push(
-          //     MaterialPageRoute(
-          //       builder: (context) =>
-          //           qr_result(scanRisult: barcode.code.toString()),
-          //     ),
-          //   );
-          // }
         } else {
           scanning();
         }

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_connect/components/app_menu_item.dart';
+import 'package:green_connect/payment/SID_enquiry_center.dart';
 import 'package:green_connect/side_menu/payments/payments_main.dart';
 import 'package:green_connect/side_menu/settings/settings_main.dart';
 import 'package:green_connect/side_menu/transaction/transaction_main.dart';
@@ -119,7 +120,7 @@ class _SideMenuState extends State<SideMenu> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SettingsMain(),
+                  builder: (context) => const SIDEnquiryCenter(),
                 ),
               );
             },
