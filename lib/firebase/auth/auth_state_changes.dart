@@ -16,7 +16,7 @@ class AuthChanges extends StatelessWidget {
         } else {
           if (snapshot.hasData) {
             return const MainLayer();
-          } else {
+          }  else {
             return const Loginscreen();
           }
         }
