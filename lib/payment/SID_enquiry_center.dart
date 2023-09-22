@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:green_connect/components/app_bar_with_back.dart';
 
 class SIDEnquiryCenter extends StatelessWidget {
-  const SIDEnquiryCenter({super.key});
+  SIDEnquiryCenter({super.key});
 
   get _textEditingController => null;
 
-  final _value = "-1";
+  final TextEditingController _aboutController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,131 +25,23 @@ class SIDEnquiryCenter extends StatelessWidget {
                   textAlign: TextAlign.start,
                 ),
               ),
-
-              // Enter your name ________________________________
-
-              const SizedBox(height: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 450,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.green),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: TextField(
-                        decoration:
-                            const InputDecoration(hintText: 'Your name'),
-                        controller: _textEditingController,
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        keyboardType: TextInputType.text,
-                        onChanged: (value) {},
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              // Enter batch _____________________
-
               const SizedBox(height: 15),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    width: 450,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.green),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: TextField(
-                        decoration: const InputDecoration(hintText: 'Batch'),
-                        controller: _textEditingController,
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {},
-                      ),
-                    ),
+              TextField(
+                keyboardType: TextInputType.multiline,
+                maxLines: 4,
+                controller: _aboutController,
+                decoration: const InputDecoration(
+                  hintText: 'Text',
+                  border: OutlineInputBorder(),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
                   ),
-                ],
-              ),
-
-              // Select faculty _____________________________
-
-              const SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.all(0),
-                child: DropdownButtonFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  )),
-                  value: _value,
-                  items: const [
-                    DropdownMenuItem(
-                      value: "-1",
-                      child: Text("Faculty"),
-                    ),
-                    DropdownMenuItem(
-                      value: "1",
-                      child: Text("Faculty of Computing"),
-                    ),
-                    DropdownMenuItem(
-                      value: "2",
-                      child: Text("Faculty of Bussiness"),
-                    ),
-                    DropdownMenuItem(
-                      value: "3",
-                      child: Text("Faculty of Engineering"),
-                    ),
-                  ],
-                  onChanged: (v) {},
                 ),
               ),
-
-              // Enter Amount __________________
-
               const SizedBox(height: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Container(
-                    width: 450,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.green),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: TextField(
-                        decoration: const InputDecoration(hintText: 'LKR'),
-                        controller: _textEditingController,
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {},
-                      ),
-                    ),
-                  ),
-
-                  //Radio buttons ______________________________
-
                   const SizedBox(height: 10),
                   Column(
                     children: [
@@ -230,7 +122,7 @@ class SIDEnquiryCenter extends StatelessWidget {
                   const Align(
                     child: Text(
                       'Note: This details will directly send to the university IT department, They will contact you.                             ',
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.black54,
@@ -247,7 +139,7 @@ class SIDEnquiryCenter extends StatelessWidget {
                       minimumSize: const Size(150, 50),
                     ),
                     child: const Text(
-                      'Pay Now',
+                      'Submit Now',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

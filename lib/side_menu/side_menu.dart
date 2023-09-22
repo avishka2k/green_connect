@@ -124,7 +124,7 @@ class _SideMenuState extends State<SideMenu> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SIDEnquiryCenter(),
+                  builder: (context) => SIDEnquiryCenter(),
                 ),
               );
             },

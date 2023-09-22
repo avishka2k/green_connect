@@ -5,14 +5,14 @@ import 'package:green_connect/app_color.dart';
 import 'package:green_connect/components/app_bar_with_back.dart';
 import 'package:green_connect/components/app_text_form_field.dart';
 
-class PaymentTopUp extends StatefulWidget {
-  const PaymentTopUp({super.key});
+class CommunityTopUp extends StatefulWidget {
+  const CommunityTopUp({super.key});
 
   @override
-  State<PaymentTopUp> createState() => _PaymentTopUpState();
+  State<CommunityTopUp> createState() => _CommunityTopUpState();
 }
 
-class _PaymentTopUpState extends State<PaymentTopUp> {
+class _CommunityTopUpState extends State<CommunityTopUp> {
   final TextEditingController amountController = TextEditingController();
   String? selectedItem;
   List<String> items = ['LKR', 'USD', 'NR'];
@@ -41,7 +41,7 @@ class _PaymentTopUpState extends State<PaymentTopUp> {
               const Align(
                 alignment: FractionalOffset(0, 1),
                 child: Text(
-                  'Student ID Top-UP                ',
+                  'Top-UP for CSR Project',
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 20,
@@ -51,57 +51,6 @@ class _PaymentTopUpState extends State<PaymentTopUp> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Align(
-                alignment: FractionalOffset(0, 1),
-                child: Text(
-                  'This allows you to provide the following benefits.',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: appBlack,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 5),
-              const Align(
-                alignment: FractionalOffset(0.2, 0.6),
-                child: Text(
-                  ' You can pay for the gym',
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 5),
-              const Align(
-                alignment: FractionalOffset(0.2, 0.6),
-                child: Text(
-                  ' You can pay for the pool',
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 5),
-              const Align(
-                alignment: FractionalOffset(0.2, 0.6),
-                child: Text(
-                  ' You can buy event ticket',
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 5),
-              const Align(
-                alignment: FractionalOffset(0.2, 0.6),
-                child: Text(
-                  '  You can pay for library fee',
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
               const SizedBox(height: 20),
               GridView.count(
                 crossAxisCount: 3,

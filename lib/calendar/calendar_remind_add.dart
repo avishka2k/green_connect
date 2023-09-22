@@ -140,7 +140,7 @@ class _CalendarRemindAddState extends State<CalendarRemindAdd> {
                       const SizedBox(height: 3),
                       DropdownButtonFormField<String>(
                         value: selectedRemind,
-                        items: <String>['Dog', 'Cat', 'Tiger', 'Lion']
+                        items: <String>['Daily', 'One time']
                             .map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem<String>(

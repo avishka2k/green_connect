@@ -72,12 +72,12 @@ class _AddEventsState extends State<AddEvents> {
 
     final storageRef = firebase_storage.FirebaseStorage.instance
         .ref()
-        .child('images/comevents/${DateTime.now()}.png');
+        .child('images/concsr/${DateTime.now()}.png');
     await storageRef.putFile(imageFile);
 
     final String imageUrl = await storageRef.getDownloadURL();
 
-    await FirebaseFirestore.instance.collection('comevents').add({
+    await FirebaseFirestore.instance.collection('comcsr').add({
       'title': _titleController.text,
       'location': _locationController.text,
       'timeStart': _timeStartController.text,
