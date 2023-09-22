@@ -8,7 +8,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       title: 'Flutter Demo',
       theme: ThemeData(
         brightness: Brightness.light,
@@ -24,25 +23,22 @@ class MyHomePage extends StatelessWidget {
 
   get _textEditingController => null;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Payments",
-        style: TextStyle(
-          color: Colors.green[800],
-          fontWeight: FontWeight.bold,
-
-        ) ,
-      ),
-
+      appBar: AppBar(
+        title: Text(
+          "Payments",
+          style: TextStyle(
+            color: Colors.green[800],
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         elevation: 1.0,
         backgroundColor: Colors.white,
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-
         child: Column(
           children: [
             const SizedBox(height: 30),
@@ -59,16 +55,13 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
 
-
-            // Text ...............................
-
             const SizedBox(height: 20),
             const Align(
               alignment: FractionalOffset(0, 1),
               child: Text(
                 'Online payments',
                 style: TextStyle(
-                  fontSize:18,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.green,
                 ),
@@ -87,13 +80,9 @@ class MyHomePage extends StatelessWidget {
               alignment: FractionalOffset(0, 0.2),
               child: Text(
                 ' Enter your student ID and verify details.',
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black54
-                ),
+                style: TextStyle(fontSize: 15, color: Colors.black54),
               ),
             ),
-
 
             // Enter ID ...............................
 
@@ -123,7 +112,8 @@ class MyHomePage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: TextField(
-                      decoration: const InputDecoration(hintText: 'Enter Student ID'),
+                      decoration:
+                          const InputDecoration(hintText: 'Enter Student ID'),
                       controller: _textEditingController,
                       textAlign: TextAlign.start,
                       style: const TextStyle(
@@ -137,7 +127,6 @@ class MyHomePage extends StatelessWidget {
                 ),
               ],
             ),
-
 
             // Search button .............................
 
