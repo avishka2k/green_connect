@@ -105,28 +105,6 @@ class ProfileAcademicTab extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(top: 5),
               child: Text(
-                "Year 3 Semester 1",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            const ProfileAcademicData(yearsem: "year3sem1"),
-            const Padding(
-              padding: EdgeInsets.only(top: 5),
-              child: Text(
-                "Year 2 Semester 2",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            const ProfileAcademicData(yearsem: "year2sem2"),
-            const Padding(
-              padding: EdgeInsets.only(top: 5),
-              child: Text(
                 "Year 2 Semester 1",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
@@ -135,17 +113,6 @@ class ProfileAcademicTab extends StatelessWidget {
               ),
             ),
             const ProfileAcademicData(yearsem: "year2sem1"),
-            const Padding(
-              padding: EdgeInsets.only(top: 5),
-              child: Text(
-                "Year 1 Semester 2",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            const ProfileAcademicData(yearsem: "year1sem2"),
             const Padding(
               padding: EdgeInsets.only(top: 5),
               child: Text(

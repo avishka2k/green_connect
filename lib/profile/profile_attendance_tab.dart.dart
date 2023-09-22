@@ -304,18 +304,3 @@ class _ProfileAttendanceTabState extends State<ProfileAttendanceTab> {
     }
   }
 }
-
-// users (collection)
-//   └── user_id (document)
-//        └── academic (collection)
-//               ├── year1sem1_id (document)
-//                     ├── module(collection)
-//                           └── module_id(document)
-//                               ├── field1: value1
-//                               └── field2: value2
-//                     └── module(collection)
-//                           └── module_id(document)
-//                               ├── field1: value1
-//                               └── field2: value2
-//               ├── year1sem2_id (document)
-//               └── year2sem2_id (document)

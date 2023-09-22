@@ -6,7 +6,7 @@ import 'package:green_connect/components/app_events_card.dart';
 import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/models/myclass.dart';
 import 'package:green_connect/payment/payment_top_up.dart';
-import 'package:green_connect/tmp/qr_screen.dart';
+import 'package:green_connect/admin/qr_screen.dart';
 import 'package:intl/intl.dart';
 
 class HomeMain extends StatefulWidget {

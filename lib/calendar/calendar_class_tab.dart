@@ -7,7 +7,7 @@ import 'package:green_connect/app_color.dart';
 import 'package:green_connect/components/calendar_events_card.dart';
 import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/models/myclass.dart';
-import 'package:green_connect/tmp/qr_screen.dart';
+import 'package:green_connect/admin/qr_screen.dart';
 import 'package:intl/intl.dart';
 
 class CalendarClassTab extends StatefulWidget {

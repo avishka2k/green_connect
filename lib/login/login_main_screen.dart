@@ -262,7 +262,7 @@ class _LoginScreenState extends State<Loginscreen> {
                         buildPassword(),
                         buildRememberCb(),
                         buildLoginBtn(),
-                        buildsignUpcomm()
+                        //   buildsignUpcomm()
                       ],
                     ),
                   ),
