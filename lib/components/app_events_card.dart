@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:green_connect/app_color.dart';
+import 'package:green_connect/community_pages/community_view.dart';
 import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/home/home_events_details.dart';
 import 'package:green_connect/models/events.dart';
@@ -107,6 +108,10 @@ class _AppEventsCardState extends State<AppEventsCard> {
                         switch (widgetName) {
                           case 'EventDetialsPage':
                             return EventDetialsPage(
+                              eventId: event[index].eventID,
+                            );
+                            case 'ComView':
+                            return ComView(
                               eventId: event[index].eventID,
                             );
                           default:

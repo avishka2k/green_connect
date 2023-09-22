@@ -35,7 +35,7 @@ class _TransactionCardState extends State<TransactionCard> {
       await firestoreInstance
           .collection("users")
           .doc(user!.uid)
-          .collection("remind")
+          .collection("payments")
           .doc(transactionId)
           .delete();
 

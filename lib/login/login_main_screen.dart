@@ -1,8 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:green_connect/components/flutter_toast.dart';
+import 'package:green_connect/home/home_main.dart';
 import 'package:green_connect/login/login_community_signup.dart';
+import 'package:green_connect/main_layer.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -23,6 +27,12 @@ class _LoginScreenState extends State<Loginscreen> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _email.text,
         password: _password.text,
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MainLayer(),
+        ),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

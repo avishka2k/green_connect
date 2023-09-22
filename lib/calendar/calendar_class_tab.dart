@@ -7,6 +7,7 @@ import 'package:green_connect/app_color.dart';
 import 'package:green_connect/components/calendar_events_card.dart';
 import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/models/myclass.dart';
+import 'package:green_connect/tmp/qr_screen.dart';
 import 'package:intl/intl.dart';
 
 class CalendarClassTab extends StatefulWidget {
@@ -17,7 +18,6 @@ class CalendarClassTab extends StatefulWidget {
 }
 
 class _CalendarClassTabState extends State<CalendarClassTab> {
-
   final firestoreInstance = FirebaseFirestore.instance;
   final User? user = FirebaseAuth.instance.currentUser;
   List<MyClass> myclass = [];
@@ -96,14 +96,12 @@ class _CalendarClassTabState extends State<CalendarClassTab> {
                     } else {
                       return GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => EventDetialsPage(
-                          //       eventId: widget.events[index].eventID,
-                          //     ),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => QrScanner(),
+                            ),
+                          );
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -200,4 +198,3 @@ class _CalendarClassTabState extends State<CalendarClassTab> {
     );
   }
 }
-

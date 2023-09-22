@@ -1,6 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:green_connect/app_color.dart';
+import 'package:green_connect/components/app_events_card.dart';
+import 'package:green_connect/components/flutter_toast.dart';
+import 'package:green_connect/home/home_events_details.dart';
+import 'package:green_connect/models/events.dart';
+import 'package:intl/intl.dart';
 
 class CommunityPage extends StatefulWidget {
   const CommunityPage({Key? key}) : super(key: key);
@@ -12,638 +18,44 @@ class CommunityPage extends StatefulWidget {
 int notificationCount = 5;
 
 class _CommunityPageState extends State<CommunityPage> {
-  String userName = "Chamaka";
-  double availableBalance = 5000.00;
-
-  List<String> imagePaths = [
-    'assets/images/io.png', // Replace with the actual path to your image assets
-    'assets/images/dev.png',
-    'assets/images/dev.png',
-    'assets/images/io.png',
-  ];
-
-  List<String> itemTexts = [
-    'Google I/O 2023', // Replace with the desired text for each item
-    'Google I/O 2023',
-    'Google I/O 2023',
-    'Google I/O 2023',
-  ];
-
-  List<String> itemTexts1 = [
-    'Google  2023', // Replace with the desired text for each item
-    'Google  2023',
-    'Google I/O 2023',
-    'Google I/O 2023',
-  ];
-  // List<bool> containerFavorites = [false, false, false, false];
-  bool isReactClicked = false;
+  String searchQuery = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
+          padding: appPagePadding,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
-                    hintText: 'Search...',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+              TextField(
+                onChanged: (value) {
+                  setState(() {
+                    searchQuery = value.toLowerCase();
+                  });
+                },
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: 'Search...',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
               ),
-              Center(
-                child: SizedBox(
-                  height: 300,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 16),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'CSR Projects', // Add your desired text here
-                                style: GoogleFonts.inter(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 0),
-                      CarouselSlider.builder(
-                        options: CarouselOptions(
-                          height: 240,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 0.8,
-                          initialPage: 0,
-                          enableInfiniteScroll: true,
-                          reverse: false,
-                          autoPlay: false,
-                          autoPlayInterval: const Duration(seconds: 3),
-                          autoPlayAnimationDuration:
-                              const Duration(milliseconds: 800),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enlargeFactor: 0.3,
-                          scrollDirection: Axis.horizontal,
-                        ),
-                        itemCount: imagePaths.length,
-                        itemBuilder: (BuildContext context, int index,
-                            int pageViewIndex) {
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Material(
-                              borderRadius: BorderRadius.circular(8),
-                              elevation: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Image.asset(
-                                      imagePaths[index],
-                                      height: 130,
-                                      width: MediaQuery.of(context).size.width,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          itemTexts[index],
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        const Text(
-                                          'Subtitle Text',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
-                                            color: Color(0xFF00744A),
-                                          ),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  isReactClicked =
-                                                      !isReactClicked;
-                                                });
-                                              },
-                                              icon: Icon(
-                                                (isReactClicked == true)
-                                                    ? Icons.favorite
-                                                    : Icons.favorite_border,
-                                                color: (isReactClicked == true)
-                                                    ? Colors.red
-                                                    : Colors.black,
-                                              ),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {},
-                                              child: const Text(
-                                                'More',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Color(0xFF00744A),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+              AppEventsCardCSr(
+                listTitle: 'CSR Projects',
+                colName: 'events',
+                clickCard: 'EventDetialsPage',
+                searchQuery: searchQuery,
               ),
               const SizedBox(
                 height: 10,
               ),
-              Center(
-                child: SizedBox(
-                  height: 300,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Upcoming Events', // Add your desired text here
-                                style: GoogleFonts.inter(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      CarouselSlider.builder(
-                        options: CarouselOptions(
-                          height: 240,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 0.8,
-                          initialPage: 0,
-                          enableInfiniteScroll: true,
-                          reverse: false,
-                          autoPlay: false,
-                          autoPlayInterval: const Duration(seconds: 3),
-                          autoPlayAnimationDuration:
-                              const Duration(milliseconds: 800),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enlargeFactor: 0.3,
-                          scrollDirection: Axis.horizontal,
-                        ),
-                        itemCount: imagePaths.length,
-                        itemBuilder: (BuildContext context, int index,
-                            int pageViewIndex) {
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Material(
-                              borderRadius: BorderRadius.circular(8),
-                              elevation: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Image.asset(
-                                      imagePaths[index],
-                                      height: 130,
-                                      width: MediaQuery.of(context).size.width,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          itemTexts[index],
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        const Text(
-                                          'Subtitle Text',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.normal,
-                                            color: Color(0xFF00744A),
-                                          ),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  isReactClicked =
-                                                      !isReactClicked;
-                                                });
-                                              },
-                                              icon: Icon(
-                                                (isReactClicked == true)
-                                                    ? Icons.favorite
-                                                    : Icons.favorite_border,
-                                                color: (isReactClicked == true)
-                                                    ? Colors.red
-                                                    : Colors.black,
-                                              ),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {},
-                                              child: const Text(
-                                                'More',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Color(0xFF00744A),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+              const AppEventsCard(
+                listTitle: 'Events',
+                colName: 'comevents',
+                clickCard: 'ComView',
               ),
-              // SizedBox(height: 20),
-              //
-              // Container(
-              //     height: 300,
-              //     width: double.infinity,
-              //     child: Column(
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //         children: [
-              //           Padding(
-              //             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              //             child: Row(
-              //               children: [
-              //                 Expanded(
-              //                   child: Text(
-              //                     'IEEE', // Add your desired text here
-              //                     style: GoogleFonts.inter(
-              //                       fontSize: 16,
-              //                       fontWeight: FontWeight.bold,
-              //                       color: Colors.black,
-              //                     ),
-              //                   ),
-              //                 ),
-              //                 ElevatedButton(
-              //                   onPressed: () {
-              //                     // Handle the "Follow" button click here
-              //                   },
-              //                   style: ElevatedButton.styleFrom(
-              //                     primary: Color(0xFF18A689),
-              //                     shape: RoundedRectangleBorder(
-              //                       borderRadius: BorderRadius.circular(20),
-              //                     ),
-              //                     minimumSize: Size(30, 30),
-              //
-              //                   ),
-              //                   child: Text(
-              //                     'Follow',
-              //                     style: TextStyle(
-              //                       fontSize: 12,
-              //                       color: Colors.white,
-              //                     ),
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //
-              //           SizedBox(height: 5),
-              //           Expanded(
-              //               child:ListView.builder(
-              //                 scrollDirection: Axis.horizontal,
-              //                 itemCount: imagePaths.length,
-              //                 itemBuilder: (BuildContext context, int index) {
-              //                   bool isReactClicked =
-              //                   false; // Track if the React button is clicked
-              //
-              //                   return Padding(
-              //                     padding: EdgeInsets.symmetric(horizontal: 10),
-              //                     child: Container(
-              //                       width: 140,
-              //                       decoration: BoxDecoration(
-              //                         color: Colors.white,
-              //                         borderRadius: BorderRadius.circular(20),
-              //                       ),
-              //                       child: Stack(
-              //                         alignment: Alignment.bottomRight,
-              //                         children: [
-              //                           Column(
-              //                             mainAxisAlignment: MainAxisAlignment.center,
-              //                             crossAxisAlignment:
-              //                             CrossAxisAlignment.center,
-              //                             children: [
-              //                               ClipRRect(
-              //                                 borderRadius: BorderRadius.circular(20),
-              //                                 child: Image.asset(
-              //                                   imagePaths[index],
-              //                                   height: 100,
-              //                                   width: 140,
-              //                                   fit: BoxFit.cover,
-              //                                 ),
-              //                               ),
-              //                               SizedBox(height: 10),
-              //                               Text(
-              //                                 itemTexts[index],
-              //                                 style: GoogleFonts.inter(
-              //                                   fontSize: 14,
-              //                                   fontWeight: FontWeight.normal,
-              //                                   color: Colors.black,
-              //                                 ),
-              //                               ),
-              //                               SizedBox(height: 5),
-              //                               Text(
-              //                                 'Subtitle Text',
-              //                                 style: GoogleFonts.inter(
-              //                                   fontSize: 12,
-              //                                   fontWeight: FontWeight.normal,
-              //                                   color: Color(0xFF00744A),
-              //                                 ),
-              //                               ),
-              //                               Row(
-              //                                   mainAxisAlignment:
-              //                                   MainAxisAlignment.spaceBetween,
-              //                                   children: [
-              //                                     IconButton(
-              //                                       onPressed: () {
-              //                                         setState(() {
-              //                                           isReactClicked =
-              //                                           !isReactClicked;
-              //                                         });
-              //                                       },
-              //                                       icon: Icon(
-              //                                         (isReactClicked == true)
-              //                                             ? Icons.favorite
-              //                                             : Icons.favorite_border,
-              //                                         color: (isReactClicked == true)
-              //                                             ? Colors.red
-              //                                             : Colors.black,
-              //                                       ),
-              //                                     ),
-              //                                     Positioned(
-              //                                       left: 0,
-              //                                       right: 0,
-              //                                       bottom: 0,
-              //                                       child: ElevatedButton(
-              //                                         onPressed: () {
-              //                                           // Handle the "More" button click to navigate to another display
-              //                                           // You can use Navigator.push here
-              //                                         },
-              //                                         style: ElevatedButton.styleFrom(
-              //                                           primary: Colors.white,
-              //                                           // shadowColor: Colors.transparent,
-              //                                           //  shape: RoundedRectangleBorder(
-              //                                           //    borderRadius: BorderRadius.only(
-              //                                           //      bottomLeft: Radius.circular(20),
-              //                                           //      bottomRight: Radius.circular(20),
-              //                                           //    ),
-              //                                           //  ),
-              //                                         ),
-              //                                         child: Text(
-              //                                           'More',
-              //                                           style: GoogleFonts.inter(
-              //                                             fontSize: 12,
-              //                                             fontWeight: FontWeight.normal,
-              //                                             color: Color(0xFF00744A),
-              //                                           ),
-              //                                         ),
-              //                                       ),
-              //                                     ),
-              //                                   ])
-              //                             ],
-              //                           ),
-              //                         ],
-              //                       ),
-              //                     ),
-              //                   );
-              //                 },
-              //               )
-              //           ),
-              //         ])),
-              // SizedBox(height: 20),
-              // Add some spacing between the first and second containers
-
-              // Second Container
-              // Container(
-              //   height: 300,
-              //   width: double.infinity,
-              //   child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         Padding(
-              //           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              //           child: Row(
-              //             children: [
-              //               Expanded(
-              //                 child: Text(
-              //                   'Maths Circle', // Add your desired text here
-              //                   style: GoogleFonts.inter(
-              //                     fontSize: 16,
-              //                     fontWeight: FontWeight.bold,
-              //                     color: Colors.black,
-              //                   ),
-              //                 ),
-              //               ),
-              //               ElevatedButton(
-              //                 onPressed: () {
-              //                   // Handle the "Follow" button click here
-              //                 },
-              //                 style: ElevatedButton.styleFrom(
-              //                   primary: Color(0xFF18A689),
-              //                   shape: RoundedRectangleBorder(
-              //                     borderRadius: BorderRadius.circular(20),
-              //                   ),
-              //                   minimumSize: Size(30, 30),
-              //
-              //                 ),
-              //                 child: Text(
-              //                   'Follow',
-              //                   style: TextStyle(
-              //                     fontSize: 12,
-              //                     color: Colors.white,
-              //                   ),
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //         ),
-              //         // Add other widgets for the rest of the content
-              //
-              //
-              //         SizedBox(height: 10),
-              //         Expanded(
-              //             child: ListView.builder(
-              //               scrollDirection: Axis.horizontal,
-              //               itemCount: imagePaths.length,
-              //               itemBuilder: (BuildContext context, int index) {
-              //                 bool isReactClicked =
-              //                 false; // Track if the React button is clicked
-              //
-              //                 return Padding(
-              //                   padding: EdgeInsets.symmetric(horizontal: 10),
-              //                   child: Container(
-              //                     width: 140,
-              //                     decoration: BoxDecoration(
-              //                       color: Colors.white,
-              //                       borderRadius: BorderRadius.circular(20),
-              //                     ),
-              //                     child: Stack(
-              //                       alignment: Alignment.bottomRight,
-              //                       children: [
-              //                         Column(
-              //                           mainAxisAlignment: MainAxisAlignment.center,
-              //                           crossAxisAlignment:
-              //                           CrossAxisAlignment.center,
-              //                           children: [
-              //                             ClipRRect(
-              //                               borderRadius: BorderRadius.circular(20),
-              //                               child: Image.asset(
-              //                                 imagePaths[index],
-              //                                 height: 100,
-              //                                 width: 140,
-              //                                 fit: BoxFit.cover,
-              //                               ),
-              //                             ),
-              //                             SizedBox(height: 10),
-              //                             Text(
-              //                               itemTexts1[index],
-              //                               style: GoogleFonts.inter(
-              //                                 fontSize: 14,
-              //                                 fontWeight: FontWeight.normal,
-              //                                 color: Colors.black,
-              //                               ),
-              //                             ),
-              //                             SizedBox(height: 5),
-              //                             Text(
-              //                               'Subtitle Text',
-              //                               style: GoogleFonts.inter(
-              //                                 fontSize: 12,
-              //                                 fontWeight: FontWeight.normal,
-              //                                 color: Color(0xFF00744A),
-              //                               ),
-              //                             ),
-              //                             Row(
-              //                                 mainAxisAlignment:
-              //                                 MainAxisAlignment.spaceBetween,
-              //                                 children: [
-              //                                   IconButton(
-              //                                     onPressed: () {
-              //                                       setState(() {
-              //                                         isReactClicked =
-              //                                         !isReactClicked;
-              //                                       });
-              //                                     },
-              //                                     icon: Icon(
-              //                                       (isReactClicked == true)
-              //                                           ? Icons.favorite
-              //                                           : Icons.favorite_border,
-              //                                       color: (isReactClicked == true)
-              //                                           ? Colors.red
-              //                                           : Colors.black,
-              //                                     ),
-              //                                   ),
-              //                                   Positioned(
-              //                                     left: 0,
-              //                                     right: 0,
-              //                                     bottom: 0,
-              //                                     child: ElevatedButton(
-              //                                       onPressed: () {
-              //                                         // Handle the "More" button click to navigate to another display
-              //                                         // You can use Navigator.push here
-              //                                       },
-              //                                       style: ElevatedButton.styleFrom(
-              //                                         primary: Colors.white,
-              //                                         // shadowColor: Colors.transparent,
-              //                                         //  shape: RoundedRectangleBorder(
-              //                                         //    borderRadius: BorderRadius.only(
-              //                                         //      bottomLeft: Radius.circular(20),
-              //                                         //      bottomRight: Radius.circular(20),
-              //                                         //    ),
-              //                                         //  ),
-              //                                       ),
-              //                                       child: Text(
-              //                                         'More',
-              //                                         style: GoogleFonts.inter(
-              //                                           fontSize: 12,
-              //                                           fontWeight: FontWeight.normal,
-              //                                           color: Color(0xFF00744A),
-              //                                         ),
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                 ])
-              //                           ],
-              //                         ),
-              //                       ],
-              //                     ),
-              //                   ),
-              //                 );
-              //               },
-              //             )
-              //         )
-              //       ]),
-              // )
             ],
           ),
         ),
@@ -652,3 +64,213 @@ class _CommunityPageState extends State<CommunityPage> {
   }
 }
 //
+
+class AppEventsCardCSr extends StatefulWidget {
+  final String listTitle;
+  final String colName;
+  final String clickCard;
+  final String searchQuery;
+
+  const AppEventsCardCSr({
+    required this.listTitle,
+    required this.colName,
+    required this.clickCard,
+    required this.searchQuery,
+    super.key,
+  });
+
+  @override
+  State<AppEventsCardCSr> createState() => _AppEventsCardCSrState();
+}
+
+class _AppEventsCardCSrState extends State<AppEventsCardCSr> {
+  bool isReactClicked = false;
+  final firestoreInstance = FirebaseFirestore.instance;
+  List<Events> event = [];
+  bool isLoading = true;
+  @override
+  void initState() {
+    fetchModulesData();
+    super.initState();
+  }
+
+  Future<void> fetchModulesData() async {
+    try {
+      final remindCollection =
+          await firestoreInstance.collection(widget.colName).get();
+
+      event = remindCollection.docs.map((doc) {
+        return Events(
+          eventID: doc.id,
+          title: doc.get("title"),
+          timeStart: doc.get("timeStart").toDate(),
+          imageUrl: doc.get("imageUrl"),
+        );
+      }).toList();
+
+      // Filter events based on search query
+      if (widget.searchQuery.isNotEmpty) {
+        event = event
+            .where((e) => e.title.toLowerCase().contains(widget.searchQuery))
+            .toList();
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      AppToastmsg.appToastMeassage('Error fetching modules data!');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Text(
+            widget.listTitle,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: appBlack,
+            ),
+          ),
+        ),
+        isLoading
+            ? const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Center(child: CircularProgressIndicator()),
+              )
+            : event.isEmpty
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Center(
+                      child: Text('No ${widget.listTitle}'),
+                    ),
+                  )
+                : CarouselSlider.builder(
+                    options: CarouselOptions(
+                      height: 200,
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 0.8,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      enlargeFactor: 0.3,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                    itemCount: event.length,
+                    itemBuilder:
+                        (BuildContext context, int index, int pageViewIndex) {
+                      String eventdate = DateFormat('E, MMM d, y')
+                          .format(event[index].timeStart);
+
+                      Widget StoWconvert(String widgetName) {
+                        switch (widgetName) {
+                          case 'EventDetialsPage':
+                            return EventDetialsPage(
+                              eventId: event[index].eventID,
+                            );
+                          default:
+                            return Container();
+                        }
+                      }
+
+                      Widget navigate = StoWconvert(widget.clickCard);
+
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => navigate,
+                              ),
+                            );
+                          },
+                          child: Material(
+                            borderRadius: BorderRadius.circular(8),
+                            elevation: 1,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Stack(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.black,
+                                      ),
+                                      child: Opacity(
+                                        opacity: 0.7,
+                                        child: Image.network(
+                                          event[index].imageUrl.toString(),
+                                          height: 130,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      right: 0,
+                                      bottom: 0,
+                                      child: IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isReactClicked = !isReactClicked;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          Icons.favorite,
+                                          fill: 1,
+                                          color: (isReactClicked == true)
+                                              ? Colors.red
+                                              : Colors.white,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        event[index].title,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        eventdate,
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.normal,
+                                          color: Color(0xFF00744A),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+      ],
+    );
+  }
+}

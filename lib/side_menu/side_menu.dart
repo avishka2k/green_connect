@@ -21,6 +21,7 @@ class _SideMenuState extends State<SideMenu> {
   }
 
   String currentUserName = 'loading...';
+  String imageUrl = '';
 
   @override
   void initState() {
@@ -40,6 +41,7 @@ class _SideMenuState extends State<SideMenu> {
       if (userData.exists) {
         setState(() {
           currentUserName = userData['name'];
+          imageUrl = userData['imageUrl'];
         });
       } else {
         AppToastmsg.appToastMeassage('User data not found in Firestore');
@@ -70,11 +72,13 @@ class _SideMenuState extends State<SideMenu> {
             accountName: Text(capitalizedName),
             accountEmail: Text(user!.email.toString()),
             currentAccountPicture: CircleAvatar(
-              child: ClipOval(
-                child: Image.asset(
-                  'assets/icons/card.png',
-                ),
-              ),
+              child: imageUrl.isEmpty
+                  ? Container()
+                  : ClipOval(
+                      child: Image.network(
+                        imageUrl,
+                      ),
+                    ),
             ),
           ),
           AppMenuItem(
