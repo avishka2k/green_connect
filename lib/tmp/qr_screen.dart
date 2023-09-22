@@ -10,17 +10,17 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 //import 'package:assets_audio_player/assets_audio_player.dart';
 
-class scanner extends StatefulWidget {
-  const scanner({Key? key}) : super(key: key);
+class QrScanner extends StatefulWidget {
+  const QrScanner({Key? key}) : super(key: key);
 
   @override
-  State<scanner> createState() => _scannerState();
+  State<QrScanner> createState() => _QrScannerState();
 }
 
 List<String> recentTitle = [];
 List<String> recentDate = [];
 
-class _scannerState extends State<scanner> {
+class _QrScannerState extends State<QrScanner> {
   final qrKey = GlobalKey(debugLabel: 'QR');
 
   Barcode? barcode;

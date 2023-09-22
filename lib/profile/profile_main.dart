@@ -1,11 +1,51 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:green_connect/components/flutter_toast.dart';
 import 'package:green_connect/profile/profile_attendance_tab.dart.dart';
 import 'profile_student_tab.dart';
 import 'profile_academic_tab2.dart';
 //import 'profile_attendance_tab.dart';
 
-class ProfileMain extends StatelessWidget {
+class ProfileMain extends StatefulWidget {
   const ProfileMain({super.key});
+
+  @override
+  State<ProfileMain> createState() => _ProfileMainState();
+}
+
+class _ProfileMainState extends State<ProfileMain> {
+  String currentUserName = 'loading...';
+
+  String imageUrl = '';
+
+  @override
+  void initState() {
+    super.initState();
+    User? user = FirebaseAuth.instance.currentUser;
+    fetchUserData(user!);
+  }
+
+  Future<void> fetchUserData(User user) async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> userData = await FirebaseFirestore
+          .instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      if (userData.exists) {
+        setState(() {
+          currentUserName = userData['name'];
+          imageUrl = userData['imageUrl'];
+        });
+      } else {
+        AppToastmsg.appToastMeassage('User data not found in Firestore');
+      }
+    } catch (e) {
+      AppToastmsg.appToastMeassage('Failed to fetch user data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +61,16 @@ class ProfileMain extends StatelessWidget {
                 SizedBox(
                   width: 80,
                   height: 80,
-                  child: ClipOval(
-                    child: Image.network("https://picsum.photos/200/200"),
-                  ),
+                  child: imageUrl.isEmpty
+                  ? Container()
+                  : ClipOval(
+                      child: Image.network(
+                        imageUrl,
+                      ),
+                    ),
                 ),
                 const SizedBox(height: 10),
-                const Text("DEG Sahan", style: TextStyle(fontSize: 20)),
+                Text(currentUserName.fcapitalize(), style: const TextStyle(fontSize: 20)),
                 const SizedBox(height: 10),
               ],
             ),
@@ -88,5 +132,12 @@ class ProfileMain extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+
+extension StringExtensions on String {
+  String fcapitalize() {
+    return "${this[0].toUpperCase()}${substring(1)}";
   }
 }

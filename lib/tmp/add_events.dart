@@ -7,7 +7,6 @@ import 'package:green_connect/components/app_text_form_field.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 
 class AddEvents extends StatefulWidget {
   const AddEvents({super.key});
@@ -73,12 +72,12 @@ class _AddEventsState extends State<AddEvents> {
 
     final storageRef = firebase_storage.FirebaseStorage.instance
         .ref()
-        .child('images/events/${DateTime.now()}.png');
+        .child('images/comevents/${DateTime.now()}.png');
     await storageRef.putFile(imageFile);
 
     final String imageUrl = await storageRef.getDownloadURL();
 
-    await FirebaseFirestore.instance.collection('events').add({
+    await FirebaseFirestore.instance.collection('comevents').add({
       'title': _titleController.text,
       'location': _locationController.text,
       'timeStart': _timeStartController.text,

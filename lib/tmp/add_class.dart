@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:green_connect/components/app_text_form_field.dart';
 import 'package:green_connect/components/flutter_toast.dart';
-import 'package:intl/intl.dart';
 
 class Module {
   final String itemsID;
